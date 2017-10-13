@@ -21,6 +21,7 @@
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-config-react-app": "^2.0.1",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.35.0",
     "eslint-plugin-import": "^2.7.0",
@@ -91,6 +92,13 @@
     "extends": [
       "airbnb",
       "react-app"
-    ]
+    ],
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.multiple.config.js"
+        }
+      }
+    }
   }
 }
