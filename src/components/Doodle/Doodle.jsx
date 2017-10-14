@@ -10,11 +10,19 @@ class Doodle extends Component {
 
         <img className={styles.img} src="http://via.placeholder.com/300x200" alt="Doodle Title" />
 
-        <div className="card-body">
+        <div className={styles.body}>
           <div className="btn-group btn-group-sm">
-            <button className="btn btn-secondary">Info</button>
-            <button className="btn btn-secondary">Like</button>
-            <button className="btn btn-secondary">Save</button>
+            <button className={styles.actionBtn}>
+              <span className="fa fa-fw fa-info" />
+            </button>
+
+            <button className={styles.actionBtn}>
+              <span className="fa fa-fw fa-star-o" />
+            </button>
+
+            <button className={styles.actionBtn}>
+              <span className="fa fa-fw fa-bookmark" />
+            </button>
           </div>
         </div>
       </div>

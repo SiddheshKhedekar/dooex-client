@@ -1,3 +1,5 @@
+$actionBtnSize: 0.3rem;
+
 .root {
   composes: global(card) global(mb-lg-3) global(mb-xl-5);
 
@@ -11,11 +13,29 @@
   composes: global(card-header);
 
   border: none;
-  background: white;
+  background-color: white;
+}
+
+.body {
+  composes: global(card-body);
+
+  padding: $actionBtnSize;
 }
 
 .img {
   composes: global(card-img-top);
 
   border-radius: 0;
+}
+
+.actionBtn {
+  composes: global(btn);
+
+  background-color: transparent;
+  border-radius: 0;
+  color: #333;
+
+  font-size: 1.3rem !important;
+  padding-right: $actionBtnSize !important;
+  padding-left: $actionBtnSize !important;
 }

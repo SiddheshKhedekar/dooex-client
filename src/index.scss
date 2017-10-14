@@ -6,3 +6,7 @@ body {
   background-color: #fafafa;
   margin-top: 56px;
 }
+
+button:focus {
+  box-shadow: none !important;
+}
