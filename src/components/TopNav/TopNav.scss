@@ -1,0 +1,6 @@
+.root {
+  composes: global(navbar) global(fixed-top) global(navbar-light);
+
+  background-color: white;
+  box-shadow: 0 0 2px #eee;
+}
