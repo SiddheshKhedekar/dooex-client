@@ -1,0 +1,20 @@
+.root {
+  composes: global(card);
+
+  border-radius: 0;
+  border-color: #eee;
+  border-bottom: none;
+}
+
+.header {
+  composes: global(card-header);
+
+  border: none;
+  background: white;
+}
+
+.img {
+  composes: global(card-img-top);
+
+  border-radius: 0;
+}
