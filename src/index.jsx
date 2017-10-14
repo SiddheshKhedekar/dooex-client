@@ -1,18 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import { AppContainer } from 'react-hot-loader';
 
 import App from 'App';
+
+import store from 'modules/store';
 
 import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 function render(Component) {
   ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
+    <Provider store={store}>
+      <AppContainer>
+        <Component />
+      </AppContainer>
+    </Provider>,
     document.getElementById('root'),
   );
 }
