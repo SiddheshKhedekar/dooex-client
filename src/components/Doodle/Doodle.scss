@@ -14,12 +14,12 @@ $actionBtnSize: 0.3rem;
 
   border: none;
   background-color: white;
+  padding: 4px 4px 0;
 }
 
-.body {
-  composes: global(card-body);
-
-  padding: $actionBtnSize;
+.title {
+  margin: 0;
+  padding: 6px;
 }
 
 .img {
@@ -28,14 +28,18 @@ $actionBtnSize: 0.3rem;
   border-radius: 0;
 }
 
+.actionBtns {
+  composes: global(btn-group) global(btn-group-sm) global(pull-right);
+}
+
 .actionBtn {
   composes: global(btn);
 
   background-color: transparent;
-  border-radius: 0;
+  border: none;
   color: #333;
 
-  font-size: 1.3rem !important;
+  font-size: 1.4rem !important;
   padding-right: $actionBtnSize !important;
   padding-left: $actionBtnSize !important;
 }
