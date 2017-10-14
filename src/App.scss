@@ -1,5 +1,12 @@
+.nav {
+  composes: global(navbar) global(fixed-top) global(navbar-light);
+
+  background-color: white;
+  box-shadow: 0 0 2px #eee;
+}
+
 .row {
-  composes: global(col-12);
+  composes: global(no-gutters);
 
   max-width: 620px;
   width: 100%;
