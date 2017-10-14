@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
+import Doodle from 'components/Doodle';
+
 import styles from './Home.scss';
-import Doodle from '../Doodle';
 
 class Home extends Component {
   render() {

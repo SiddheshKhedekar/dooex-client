@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from 'App';
+
 import { AppContainer } from 'react-hot-loader';
+
+import App from 'App';
+
+import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 function render(Component) {
@@ -10,7 +13,7 @@ function render(Component) {
     <AppContainer>
       <Component />
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 }
 
