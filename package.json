@@ -99,7 +99,14 @@
     "settings": {
       "import/resolver": {
         "webpack": {
-          "config": "webpack.multiple.config.js"
+          "config": {
+            "resolve": {
+              "modules": [
+                "node_modules",
+                "src"
+              ]
+            }
+          }
         }
       }
     }
