@@ -1,9 +1,10 @@
 .root {
-  composes: global(card);
+  composes: global(card) global(mb-lg-3) global(mb-xl-5);
 
   border-radius: 0;
   border-color: #eee;
-  border-bottom: none;
+
+  margin-top: -1px; // covers up border overlap
 }
 
 .header {
