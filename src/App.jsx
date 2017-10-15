@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import FullScreen from 'components/FullScreen';
+import FullScreenContainer from 'components/FullScreenContainer';
 import Home from 'components/Home';
 import InfoModal from 'components/InfoModal';
 import TopNav from 'components/TopNav';
@@ -17,6 +19,7 @@ class App extends Component {
       this.previousLocation = this.props.location;
     }
   }
+
   render() {
     const { location } = this.props;
 
@@ -28,24 +31,29 @@ class App extends Component {
 
     return (
       <div>
-        <TopNav />
+        <TopNav key="TopNav" />
 
-        <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path="/" component={Home} />
+        <Route exact={!isModal} path="/" component={Home} />
 
-          <Route
-            path="/info/:doodleId"
-            render={routeProps => (
-              <div>
-                {isModal ? null : <Home isModal={isModal} />}
+        <Route
+          path="/info/:doodleId"
+          render={routeProps => (
+            <div>
+              {isModal ? null : <Home isModal={isModal} />}
 
-                <InfoModal {...routeProps} isModal={isModal} />
-              </div>
-            )}
-          />
-        </Switch>
+              <InfoModal {...routeProps} isModal={isModal} />
+            </div>
+          )}
+        />
 
-        {isModal ? <Route path="/info/:doodleId" component={InfoModal} /> : null}
+        <Route
+          path="/fullscreen/:doodleId"
+          render={(routeProps) => {
+            const FullScreenComponent = isModal ? FullScreen : FullScreenContainer;
+
+            return <FullScreenComponent {...routeProps} isModal={isModal} />;
+          }}
+        />
       </div>
     );
   }

@@ -23,7 +23,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" key="Home">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <div className="col-12">

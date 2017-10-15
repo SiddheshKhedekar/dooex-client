@@ -36,7 +36,9 @@ class Doodle extends Component {
           <h4 className={styles.title}>{this.props.title}</h4>
         </div>
 
-        <img className={styles.img} src={this.props.url} alt={this.props.title} />
+        <Link to={this.modalPathname('fullscreen')}>
+          <img className={styles.img} src={this.props.url} alt={this.props.title} />
+        </Link>
       </div>
     );
   }
