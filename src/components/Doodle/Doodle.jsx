@@ -1,33 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import styles from './Doodle.scss';
 
-function Doodle({ title, url }) {
-  return (
-    <div className={styles.root}>
-      <div className={styles.header}>
-        <div className={styles.actionBtns}>
-          <button className={styles.actionBtn}>
-            <span className="fa fa-fw fa-info" />
-          </button>
+class Doodle extends Component {
+  static propTypes = {
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  };
 
-          <button className={styles.actionBtn}>
-            <span className="fa fa-fw fa-star-o" />
-          </button>
+  modalPathname(modalType) {
+    return {
+      ...this.props.location,
+
+      pathname: `/${modalType}/${this.props._id}`,
+      state: { modal: true },
+    };
+  }
+  render() {
+    return (
+      <div className={styles.root}>
+        <div className={styles.header}>
+          <div className={styles.actionBtns}>
+            <Link className={styles.actionBtn} to={this.modalPathname('info')}>
+              <span className="fa fa-fw fa-info" />
+            </Link>
+
+            <button className={styles.actionBtn}>
+              <span className="fa fa-fw fa-star-o" />
+            </button>
+          </div>
+
+          <h4 className={styles.title}>{this.props.title}</h4>
         </div>
 
-        <h4 className={styles.title}>{title}</h4>
+        <img className={styles.img} src={this.props.url} alt={this.props.title} />
       </div>
-
-      <img className={styles.img} src={url} alt={title} />
-    </div>
-  );
+    );
+  }
 }
-
-Doodle.propTypes = {
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-};
 
 export default Doodle;
