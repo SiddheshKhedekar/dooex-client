@@ -7,7 +7,7 @@ import styles from './App.scss';
 
 class App extends Component {
   render() {
-    return [<TopNav />, <Home />];
+    return [<TopNav key="TopNav" />, <Home key="Home" />];
   }
 }
 
