@@ -21,6 +21,8 @@ const GET_DOODLES_REQUEST = 'doodles/GET_DOODLES_REQUEST';
 const GET_DOODLES_SUCCESS = 'doodles/GET_DOODLES_SUCCESS';
 const GET_DOODLES_FAILURE = 'doodles/GET_DOODLES_FAILURE';
 
+const STREAM_DOODLES = 'doodles/STREAM_DOODLES';
+
 function inflate(doodles, meta) {
   const {
     allCountries, allTags, schema, linkTypes, urlPrefixes,
@@ -62,6 +64,7 @@ function reducer(state = initialState, action) {
       };
 
     case GET_DOODLES_SUCCESS:
+    case STREAM_DOODLES:
       return {
         ...state,
 
@@ -113,11 +116,31 @@ async function fetchDoodles(dispatch) {
   }
 }
 
+function streamDoodles(dispatch) {
+  const doodles = [];
+
+  const socket = new WebSocket('ws://localhost:8000/doodles/stream');
+
+  socket.onmessage = ({ data }) => {
+    const doodle = JSON.parse(data);
+
+    doodles.push(doodle);
+  };
+
+  socket.onclose = () => {
+    dispatch({
+      type: STREAM_DOODLES,
+      doodles,
+    });
+  };
+}
+
 function loadDoodles() {
   return async (dispatch) => {
     await fetchMeta(dispatch);
+    await fetchDoodles(dispatch);
 
-    fetchDoodles(dispatch);
+    await streamDoodles(dispatch);
   };
 }
 

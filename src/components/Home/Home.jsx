@@ -27,7 +27,9 @@ class Home extends Component {
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <div className="col-12">
-              {this.props.doodles.map(doodle => <Doodle key={doodle._id} {...doodle} />)}
+              {this.props.doodles
+                .slice(0, 10)
+                .map(doodle => <Doodle key={doodle._id} {...doodle} />)}
             </div>
           </div>
         </div>
