@@ -13,14 +13,7 @@ const initialState = {
   doodles: [],
 };
 
-const GET_META_REQUEST = 'doodles/GET_META_REQUEST';
-const GET_META_SUCCESS = 'doodles/GET_META_SUCCESS';
-const GET_META_FAILURE = 'doodles/GET_META_FAILURE';
-
-const GET_DOODLES_REQUEST = 'doodles/GET_DOODLES_REQUEST';
-const GET_DOODLES_SUCCESS = 'doodles/GET_DOODLES_SUCCESS';
-const GET_DOODLES_FAILURE = 'doodles/GET_DOODLES_FAILURE';
-
+const FETCH_META = 'doodles/FETCH_META';
 const STREAM_DOODLES = 'doodles/STREAM_DOODLES';
 
 function inflate(doodles, meta) {
@@ -56,14 +49,13 @@ function inflate(doodles, meta) {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_META_SUCCESS:
+    case FETCH_META:
       return {
         ...state,
 
         meta: action.meta,
       };
 
-    case GET_DOODLES_SUCCESS:
     case STREAM_DOODLES:
       return {
         ...state,
@@ -77,42 +69,15 @@ function reducer(state = initialState, action) {
 }
 
 async function fetchMeta(dispatch) {
-  dispatch({ type: GET_META_REQUEST });
-
   try {
     const meta = await fetchJson('/doodles/meta');
 
     dispatch({
-      type: GET_META_SUCCESS,
+      type: FETCH_META,
       meta,
     });
   } catch (err) {
     console.error(err);
-
-    dispatch({
-      type: GET_META_FAILURE,
-      err,
-    });
-  }
-}
-
-async function fetchDoodles(dispatch) {
-  dispatch({ type: GET_DOODLES_REQUEST });
-
-  try {
-    const doodles = await fetchJson('/doodles/slice/10');
-
-    dispatch({
-      type: GET_DOODLES_SUCCESS,
-      doodles,
-    });
-  } catch (err) {
-    console.error(err);
-
-    dispatch({
-      type: GET_DOODLES_FAILURE,
-      err,
-    });
   }
 }
 
@@ -138,7 +103,6 @@ function streamDoodles(dispatch) {
 function loadDoodles() {
   return async (dispatch) => {
     await fetchMeta(dispatch);
-    await fetchDoodles(dispatch);
 
     await streamDoodles(dispatch);
   };
