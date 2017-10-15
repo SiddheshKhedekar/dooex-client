@@ -1,19 +1,7 @@
-import fetchJson from 'modules/fetch-json';
+import { fetchMeta } from 'modules/meta/reducer';
 
-const initialState = {
-  meta: {
-    countries: [],
-    linkTypes: [],
-    schema: [],
-    tags: [],
-    types: [],
-    urlPrefixes: {},
-  },
+const initialState = [];
 
-  doodles: [],
-};
-
-const FETCH_META = 'doodles/FETCH_META';
 const STREAM_DOODLES = 'doodles/STREAM_DOODLES';
 
 function inflate(doodles, meta) {
@@ -47,37 +35,13 @@ function inflate(doodles, meta) {
   return inflatedDoodles;
 }
 
-function reducer(state = initialState, action) {
+function reducer(state = initialState, action, metaState) {
   switch (action.type) {
-    case FETCH_META:
-      return {
-        ...state,
-
-        meta: action.meta,
-      };
-
     case STREAM_DOODLES:
-      return {
-        ...state,
-
-        doodles: inflate(action.doodles, state.meta),
-      };
+      return [...state, ...inflate(action.doodles, metaState)];
 
     default:
       return state;
-  }
-}
-
-async function fetchMeta(dispatch) {
-  try {
-    const meta = await fetchJson('/doodles/meta');
-
-    dispatch({
-      type: FETCH_META,
-      meta,
-    });
-  } catch (err) {
-    console.error(err);
   }
 }
 

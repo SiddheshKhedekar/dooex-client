@@ -44,8 +44,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    doodles: state.doodles.doodles,
-    meta: state.doodles.meta,
+    doodles: state.doodles,
   };
 }
 
