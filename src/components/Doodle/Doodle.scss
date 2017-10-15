@@ -1,12 +1,13 @@
 $actionBtnSize: 0.3rem;
 
 .root {
-  composes: global(card) global(mb-lg-3) global(mb-xl-5);
+  composes: global(card) global(mb-lg-3) global(mb-xl-4);
 
   border-radius: 0;
   border-color: #eee;
 
   margin-top: -1px; // covers up border overlap
+  padding: 1px; // prevent border flicker
 }
 
 .header {
