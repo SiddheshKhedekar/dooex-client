@@ -15,10 +15,6 @@ class Doodle extends Component {
             <button className={styles.actionBtn}>
               <span className="fa fa-fw fa-star-o" />
             </button>
-
-            <button className={styles.actionBtn}>
-              <span className="fa fa-fw fa-bookmark" />
-            </button>
           </div>
 
           <h4 className={styles.title}>Doodle Title</h4>
