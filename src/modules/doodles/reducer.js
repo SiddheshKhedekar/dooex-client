@@ -95,8 +95,9 @@ function streamDoodles(dispatch) {
 function loadDoodles() {
   return async (dispatch) => {
     await fetchMeta(dispatch);
-    await fetchDoodlesSlice(dispatch);
-    await streamDoodles(dispatch);
+
+    fetchDoodlesSlice(dispatch);
+    streamDoodles(dispatch);
   };
 }
 
