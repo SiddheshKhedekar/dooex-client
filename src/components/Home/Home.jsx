@@ -17,9 +17,46 @@ class Home extends Component {
     })).isRequired,
   };
 
+  state = {
+    sliceSize: 10,
+  };
+
+  shouldLoadNext = true;
+
   componentDidMount() {
     this.props.loadDoodles();
+
+    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { scrollingElement } = document;
+
+    const scrolledRatio =
+      scrollingElement.scrollTop / (scrollingElement.scrollHeight - window.innerHeight);
+
+    if (scrolledRatio > 0.9) {
+      this.loadNext();
+    }
+  };
+
+  loadNext = () => {
+    if (this.shouldLoadNext === false) {
+      return;
+    }
+
+    // debounce scrolling
+    this.shouldLoadNext = false;
+    setTimeout(() => {
+      this.shouldLoadNext = true;
+    }, 1000);
+
+    this.setState({ sliceSize: this.state.sliceSize + 10 });
+  };
 
   render() {
     return (
@@ -28,7 +65,7 @@ class Home extends Component {
           <div id="row" className={styles.row}>
             <div className="col-12">
               {this.props.doodles
-                .slice(0, 10)
+                .slice(0, this.state.sliceSize)
                 .map(doodle => <Doodle key={doodle._id} {...doodle} />)}
             </div>
           </div>
