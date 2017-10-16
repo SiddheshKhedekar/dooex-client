@@ -25,10 +25,22 @@ class Tile extends Component {
     this.setState({ loaded: true });
   };
 
+  handleError = () => {
+    this.refImg.src = `${this.props.src}?${+new Date()}`;
+  };
+
+  renderLoader() {
+    if (this.state.loaded) {
+      return null;
+    }
+
+    return <Loader />;
+  }
+
   render() {
     return (
       <Link to={this.props.link} href={this.props.link} className={styles.root}>
-        {this.state.loaded ? null : <Loader />}
+        {this.renderLoader()}
 
         <img
           className={styles.imgHidden}
@@ -36,6 +48,7 @@ class Tile extends Component {
           alt={this.props.title}
           ref={img => (this.refImg = img)}
           onLoad={this.handleLoad}
+          onError={this.handleError}
         />
       </Link>
     );
