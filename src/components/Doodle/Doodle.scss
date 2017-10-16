@@ -23,12 +23,6 @@ $actionBtnSize: 0.3rem;
   padding: 6px;
 }
 
-.img {
-  composes: global(card-img-top);
-
-  border-radius: 0;
-}
-
 .actionBtns {
   composes: global(btn-group) global(btn-group-sm) global(pull-right);
 }

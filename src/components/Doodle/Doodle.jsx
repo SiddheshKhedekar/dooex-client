@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Tile from './Tile';
+
 import styles from './Doodle.scss';
 
 class Doodle extends Component {
@@ -19,6 +21,7 @@ class Doodle extends Component {
       state: { modal: true },
     };
   }
+
   render() {
     return (
       <div className={styles.root}>
@@ -36,9 +39,11 @@ class Doodle extends Component {
           <h4 className={styles.title}>{this.props.title}</h4>
         </div>
 
-        <Link to={this.modalPathname('fullscreen')}>
-          <img className={styles.img} src={this.props.url} alt={this.props.title} />
-        </Link>
+        <Tile
+          link={this.modalPathname('fullscreen')}
+          src={this.props.url}
+          title={this.props.title}
+        />
       </div>
     );
   }
