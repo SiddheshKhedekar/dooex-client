@@ -53,7 +53,7 @@ class Home extends Component {
     this.shouldLoadNext = false;
     setTimeout(() => {
       this.shouldLoadNext = true;
-    }, 1000);
+    }, 600);
 
     this.setState({ sliceSize: this.state.sliceSize + 10 });
   };
