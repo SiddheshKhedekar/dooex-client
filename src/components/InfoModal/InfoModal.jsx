@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import InfoTable from './InfoTable';
 
 import styles from './InfoModal.scss';
 
-class InfoModal extends React.Component {
-  static propTypes = {
-    doodle: PropTypes.object,
-    history: PropTypes.object.isRequired,
-    isModal: PropTypes.bool.isRequired,
-    location: PropTypes.object.isRequired,
-  };
+type Props = {
+  doodle?: Object,
+  history: Object,
+  isModal: boolean,
+  location: Object,
+};
 
+class InfoModal extends Component<Props> {
   backdrop = null;
 
   close = () => {

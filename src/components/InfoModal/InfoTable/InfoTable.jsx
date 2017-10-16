@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './InfoTable.scss';
 
@@ -9,7 +10,14 @@ function spaced(arr) {
   return arr.reduce((prev, curr) => [prev, ' ', curr], null) || nullComponent;
 }
 
-function InfoTable({ doodle, keys }) {
+type Props = {
+  keys: Array<string>,
+  doodle: Object,
+};
+
+function InfoTable(props: Props) {
+  const { doodle, keys } = props;
+
   return (
     <table className={styles.root}>
       <tbody>
@@ -30,10 +38,5 @@ function InfoTable({ doodle, keys }) {
     </table>
   );
 }
-
-InfoTable.propTypes = {
-  keys: PropTypes.arrayOf(PropTypes.string).isRequired,
-  doodle: PropTypes.object.isRequired,
-};
 
 export default InfoTable;

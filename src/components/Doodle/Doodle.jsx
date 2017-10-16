@@ -1,19 +1,20 @@
+// @flow
+
+import type { DoodleType } from 'types';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Tile from './Tile';
 
 import styles from './Doodle.scss';
 
-class Doodle extends Component {
-  static propTypes = {
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  };
+type Props = DoodleType & {
+  location: Object,
+};
 
-  modalPathname(modalType) {
+class Doodle extends Component<Props> {
+  modalPathname(modalType: string) {
     return {
       ...this.props.location,
 

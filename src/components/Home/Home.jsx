@@ -1,6 +1,9 @@
+// @flow
+
+import type { DoodleType } from 'types';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import Doodle from 'components/Doodle';
 
@@ -8,15 +11,16 @@ import { loadDoodles } from 'modules/doodles/reducer';
 
 import styles from './Home.scss';
 
-class Home extends Component {
-  static propTypes = {
-    loadDoodles: PropTypes.func.isRequired,
+type Props = {
+  loadDoodles: Function,
+  doodles: Array<Doodle>,
+};
 
-    doodles: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    })).isRequired,
-  };
+type State = {
+  sliceSize: number,
+};
 
+class Home extends Component<Props, State> {
   state = {
     sliceSize: 10,
   };
@@ -34,6 +38,7 @@ class Home extends Component {
   }
 
   handleScroll = () => {
+    // $FlowFixMe
     const { scrollingElement } = document;
 
     const scrolledRatio =

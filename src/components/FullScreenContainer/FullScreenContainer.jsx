@@ -1,16 +1,15 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import FullScreen from 'components/FullScreen';
 
 import { loadDoodles } from 'modules/doodles/reducer';
 
-class FullScreenContainer extends React.Component {
-  static propTypes = {
-    loadDoodles: PropTypes.func.isRequired,
-  };
+type Props = { loadDoodles: Function };
 
+class FullScreenContainer extends React.Component<Props> {
   componentDidMount() {
     this.props.loadDoodles();
   }

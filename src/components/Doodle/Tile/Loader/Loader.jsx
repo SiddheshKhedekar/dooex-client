@@ -1,12 +1,16 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './Loader.css';
 
 const r = 60;
 const t = 1.4;
 
-function Circle({ begin }) {
+type Props = { begin: number };
+
+function Circle(props: Props) {
+  const { begin } = props;
   return (
     <circle cx={r} cy={r} r="1">
       <animate
@@ -51,9 +55,5 @@ function Loader() {
     </svg>
   );
 }
-
-Circle.propTypes = {
-  begin: PropTypes.number.isRequired,
-};
 
 export default Loader;

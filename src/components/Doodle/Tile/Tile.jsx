@@ -1,18 +1,23 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loader from './Loader';
 
 import styles from './Tile.css';
 
-class Tile extends Component {
-  static propTypes = {
-    link: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  };
+type Props = {
+  link: Object,
+  title: string,
+  src: string,
+};
 
+type State = {
+  loaded: boolean,
+};
+
+class Tile extends Component<Props, State> {
   state = {
     loaded: false,
   };
@@ -20,12 +25,14 @@ class Tile extends Component {
   refImg = null;
 
   handleLoad = () => {
+    // $FlowFixMe
     this.refImg.className = styles.img;
 
     this.setState({ loaded: true });
   };
 
   handleError = () => {
+    // $FlowFixMe
     this.refImg.src = `${this.props.src}?${+new Date()}`;
   };
 
