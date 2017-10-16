@@ -145,6 +145,7 @@ module.exports = {
             test: /\.s?css$/,
             use: [
               require.resolve('style-loader'),
+              require.resolve('css-modules-flow-types-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
