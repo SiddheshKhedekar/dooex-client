@@ -33,7 +33,7 @@ class FullScreen extends Component<Props> {
     const { doodle } = this.props;
 
     if (doodle.type === 'interactive') {
-      return <iframe className={styles.iframe} src={doodle.standaloneHtml} title={doodle.title} />;
+      return <iframe className={styles.iframe} src={doodle.standalone_html} title={doodle.title} />;
     }
 
     const windowAspect = window.screen.width / window.screen.height;
@@ -41,7 +41,7 @@ class FullScreen extends Component<Props> {
     return (
       <img
         className={windowAspect > doodle.aspect ? styles.landscape : styles.portrait}
-        src={doodle.hiresUrl}
+        src={doodle.hires_url}
         alt={doodle.title}
       />
     );
@@ -70,7 +70,7 @@ function mapStateToProps(state, ownProps) {
   const { doodleId } = ownProps.match.params;
 
   return {
-    doodle: state.doodles.find(doodle => doodle._id === doodleId),
+    doodle: state.doodles.find(doodle => doodle.id === doodleId),
   };
 }
 

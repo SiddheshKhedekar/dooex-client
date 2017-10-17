@@ -71,7 +71,7 @@ class Home extends Component<Props, State> {
             <div className="col-12">
               {this.props.doodles
                 .slice(0, this.state.sliceSize)
-                .map(doodle => <Doodle key={doodle._id} {...doodle} />)}
+                .map(doodle => <Doodle key={doodle.id} {...doodle} />)}
             </div>
           </div>
         </div>

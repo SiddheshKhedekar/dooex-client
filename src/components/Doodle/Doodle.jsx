@@ -18,7 +18,7 @@ class Doodle extends Component<Props> {
     return {
       ...this.props.location,
 
-      pathname: `/${modalType}/${this.props._id}`,
+      pathname: `/${modalType}/${this.props.id}`,
       state: { modal: true },
     };
   }

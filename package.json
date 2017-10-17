@@ -104,8 +104,7 @@
       "react-app"
     ],
     "rules": {
-      "no-return-assign": "off",
-      "no-underscore-dangle": "off"
+      "no-return-assign": "off"
     },
     "settings": {
       "import/resolver": {

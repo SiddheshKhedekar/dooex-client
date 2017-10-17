@@ -68,7 +68,7 @@ function mapStateToProps(state, ownProps) {
   const { doodleId } = ownProps.match.params;
 
   return {
-    doodle: state.doodles.find(doodle => doodle._id === doodleId),
+    doodle: state.doodles.find(doodle => doodle.id === doodleId),
   };
 }
 

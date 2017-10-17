@@ -4,16 +4,15 @@ type Action = { type: string };
 type GetState = () => Object;
 type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 type Dispatch = (action: Action | ThunkAction) => any;
-type Thunk<A> = ((Dispatch, GetState) => Promise<void> | void) => A;
 
 type Doodle = {
-  _id: string,
+  id: string,
   aspect: number,
   countries: Array<string>,
   date: Date,
-  hiresUrl: string,
+  hires_url: string,
   name: string,
-  standaloneHtml: string,
+  standalone_html: string,
   tags: Array<string>,
   title: string,
   type: string,
