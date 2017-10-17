@@ -25,8 +25,6 @@ class Home extends Component<Props, State> {
     sliceSize: 10,
   };
 
-  shouldLoadNext = true;
-
   componentDidMount() {
     this.props.loadDoodles();
 
@@ -62,6 +60,8 @@ class Home extends Component<Props, State> {
 
     this.setState({ sliceSize: this.state.sliceSize + 10 });
   };
+
+  shouldLoadNext = true;
 
   render() {
     return (

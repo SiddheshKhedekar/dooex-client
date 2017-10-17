@@ -10,8 +10,6 @@ import TopNav from 'components/TopNav';
 import styles from './App.scss';
 
 class App extends Component {
-  previousLocation = this.props.location;
-
   componentWillUpdate(nextProps) {
     const { location } = this.props;
     // set previousLocation if props.location is not modal
@@ -19,6 +17,8 @@ class App extends Component {
       this.previousLocation = this.props.location;
     }
   }
+
+  previousLocation = this.props.location;
 
   render() {
     const { location } = this.props;
