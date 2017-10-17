@@ -1,5 +1,7 @@
+// @flow
+
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import FullScreen from 'components/FullScreen';
 import FullScreenContainer from 'components/FullScreenContainer';
@@ -7,10 +9,15 @@ import Home from 'components/Home';
 import InfoModal from 'components/InfoModal';
 import TopNav from 'components/TopNav';
 
-import styles from './App.scss';
+import './App.scss';
 
-class App extends Component {
-  componentWillUpdate(nextProps) {
+type Props = {
+  location: Object,
+  history: Object,
+};
+
+class App extends Component<Props> {
+  componentWillUpdate(nextProps: Props) {
     const { location } = this.props;
     // set previousLocation if props.location is not modal
     if (nextProps.history.action !== 'POP' && (!location.state || !location.state.modal)) {
