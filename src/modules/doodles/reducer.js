@@ -1,25 +1,44 @@
+// @flow
+
+import type { Doodle as DoodleType, Dispatch, Meta } from 'modules/types';
+
 import fetchJson from 'modules/fetch-json';
 import { fetchMeta } from 'modules/meta/reducer';
 
+// $FlowFixMe
+type State = Array<DoodleType>;
+type DeflatedDoodle = Array<any>;
+
 const sliceSize = 10;
-const initialState = [];
+const initialState: State = [];
 
-const FETCH_DOODLES_SLICE = 'doodles/FETCH_DOODLES_SLICE';
-const STREAM_DOODLES = 'doodles/STREAM_DOODLES';
+const FETCH_DOODLES_SLICE = 'FETCH_DOODLES_SLICE';
+const STREAM_DOODLES = 'STREAM_DOODLES';
 
-function inflate(doodles, meta) {
+type Action =
+  | {
+      type: 'FETCH_DOODLES_SLICE',
+      doodles: Array<DeflatedDoodle>,
+    }
+  | {
+      type: 'STREAM_DOODLES',
+      doodles: Array<DeflatedDoodle>,
+    };
+
+function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
   const {
-    allCountries, allTags, schema, linkTypes, urlPrefixes,
+    countries, linkTypes, schema, tags, urlPrefixes,
   } = meta;
 
-  const inflatedDoodles = doodles.map((_, i) => {
+  const doodles = deflatedDoodles.map((_, i) => {
     const doodle = {};
 
     schema.forEach((key, j) => {
-      doodle[key] = doodles[i][j];
+      doodle[key] = deflatedDoodles[i][j];
     });
 
     linkTypes
+      // $FlowFixMe
       .filter(linkType => schema.includes(linkType))
       .filter(linkType => doodle[linkType] !== null)
       .forEach((linkType) => {
@@ -29,16 +48,16 @@ function inflate(doodles, meta) {
         doodle[linkType] = doodle[linkType].replace(urlPrefixIdx, urlPrefix);
       });
 
-    doodle.countries = doodle.countries.map(cIdx => allCountries[cIdx]);
-    doodle.tags = doodle.tags.map(tIdx => allTags[tIdx]);
+    doodle.countries = doodle.countries.map(cIdx => countries[cIdx]);
+    doodle.tags = doodle.tags.map(tIdx => tags[tIdx]);
 
     return doodle;
   });
 
-  return inflatedDoodles;
+  return doodles;
 }
 
-function reducer(state = initialState, action, metaState) {
+function reducer(state: State = initialState, action: Action, metaState: Meta) {
   switch (action.type) {
     case FETCH_DOODLES_SLICE:
       return inflate(action.doodles, metaState);
@@ -76,6 +95,7 @@ function streamDoodles(dispatch) {
     const socket = new WebSocket('ws://localhost:8000/doodles/stream');
 
     socket.onmessage = ({ data }) => {
+      // $FlowFixMe
       const doodle = JSON.parse(data);
 
       doodles.push(doodle);
@@ -93,7 +113,7 @@ function streamDoodles(dispatch) {
 }
 
 function loadDoodles() {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     await fetchMeta(dispatch);
 
     fetchDoodlesSlice(dispatch);

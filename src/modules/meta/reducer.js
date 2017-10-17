@@ -1,17 +1,27 @@
+// @flow
+
+import type { Dispatch, Meta } from 'modules/types';
+
 import fetchJson from 'modules/fetch-json';
 
-const initialState = {
+type State = Meta;
+
+const initialState: State = {
   countries: [],
   linkTypes: [],
   schema: [],
   tags: [],
-  types: [],
   urlPrefixes: {},
 };
 
-const FETCH_META = 'doodles/FETCH_META';
+const FETCH_META = 'FETCH_META';
 
-function reducer(state = initialState, action) {
+type Action = {
+  type: 'FETCH_META',
+  meta: State,
+};
+
+function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case FETCH_META:
       return {
@@ -25,7 +35,7 @@ function reducer(state = initialState, action) {
   }
 }
 
-async function fetchMeta(dispatch) {
+async function fetchMeta(dispatch: Dispatch) {
   try {
     const meta = await fetchJson('/doodles/meta');
 

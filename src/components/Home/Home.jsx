@@ -1,6 +1,6 @@
 // @flow
 
-import type { DoodleType } from 'types';
+import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ import styles from './Home.scss';
 
 type Props = {
   loadDoodles: Function,
-  doodles: Array<Doodle>,
+  doodles: Array<DoodleType>,
 };
 
 type State = {
