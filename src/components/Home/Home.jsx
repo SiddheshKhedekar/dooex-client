@@ -1,11 +1,9 @@
 // @flow
 
-import type { Doodle as DoodleType } from 'modules/types';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Doodle from 'components/Doodle';
+import DoodlesContainer from './DoodlesContainer';
 
 import { loadDoodles } from 'reducers/doodles';
 
@@ -13,7 +11,6 @@ import styles from './Home.scss';
 
 type Props = {
   loadDoodles: Function,
-  doodles: Array<DoodleType>,
 };
 
 type State = {
@@ -68,11 +65,7 @@ class Home extends Component<Props, State> {
       <div className="container-fluid" key="Home">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
-            <div className="col-12">
-              {this.props.doodles
-                .slice(0, this.state.sliceSize)
-                .map(doodle => <Doodle key={doodle.id} {...doodle} />)}
-            </div>
+            <DoodlesContainer sliceSize={this.state.sliceSize} />
           </div>
         </div>
       </div>
@@ -84,10 +77,4 @@ const mapDispatchToProps = {
   loadDoodles,
 };
 
-function mapStateToProps(state) {
-  return {
-    doodles: state.doodles,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);
