@@ -1,6 +1,14 @@
 .root {
-  composes: global(navbar) global(fixed-top) global(navbar-light);
+  composes: global(navbar) global(navbar-expand) global(fixed-top) global(navbar-light);
 
   background-color: white;
   box-shadow: 0 0 2px #eee;
+  justify-content: space-between;
+}
+
+.action {
+  composes: global(btn-link) global(nav-link);
+
+  padding: 0;
+  font-size: 1.5em;
 }
