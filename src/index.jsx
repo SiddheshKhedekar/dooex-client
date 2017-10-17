@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -5,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import { AppContainer } from 'react-hot-loader';
 
-import App from 'App';
+import App from './App';
 
 import store from 'modules/store';
 
@@ -29,6 +31,7 @@ render(App);
 registerServiceWorker();
 
 if (module.hot) {
+  // $FlowFixMe
   module.hot.accept('./App', () => {
     const nextApp = require('./App').default;
 

@@ -22,7 +22,10 @@ class Tile extends Component<Props, State> {
     loaded: false,
   };
 
-  refImg = null;
+  handleError = () => {
+    // $FlowFixMe
+    this.refImg.src = `${this.props.src}?${+new Date()}`;
+  };
 
   handleLoad = () => {
     // $FlowFixMe
@@ -31,10 +34,7 @@ class Tile extends Component<Props, State> {
     this.setState({ loaded: true });
   };
 
-  handleError = () => {
-    // $FlowFixMe
-    this.refImg.src = `${this.props.src}?${+new Date()}`;
-  };
+  refImg = null;
 
   renderLoader() {
     if (this.state.loaded) {

@@ -103,6 +103,10 @@
       "airbnb",
       "react-app"
     ],
+    "rules": {
+      "no-return-assign": "off",
+      "no-underscore-dangle": "off"
+    },
     "settings": {
       "import/resolver": {
         "webpack": {
