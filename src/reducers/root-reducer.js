@@ -1,9 +1,9 @@
-import doodles from 'modules/doodles/reducer';
-import meta from 'modules/meta/reducer';
+import doodles from 'reducers/doodles';
+import meta from 'reducers/meta';
 
 const initialState = {};
 
-function reducer(state = initialState, action) {
+function rootReducer(state = initialState, action) {
   const metaState = meta(state.meta, action);
   const doodlesState = doodles(state.doodles, action, metaState);
 
@@ -15,4 +15,4 @@ function reducer(state = initialState, action) {
   return nextState;
 }
 
-export default reducer;
+export default rootReducer;

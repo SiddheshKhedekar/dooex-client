@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import Doodle from 'components/Doodle';
 
-import { loadDoodles } from 'modules/doodles/reducer';
+import { loadDoodles } from 'reducers/doodles';
 
 import styles from './Home.scss';
 

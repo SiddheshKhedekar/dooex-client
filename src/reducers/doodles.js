@@ -3,7 +3,7 @@
 import type { Doodle as DoodleType, Dispatch, Meta } from 'modules/types';
 
 import fetchJson from 'modules/fetch-json';
-import { fetchMeta } from 'modules/meta/reducer';
+import { fetchMeta } from 'reducers/meta';
 
 // $FlowFixMe
 type State = Array<DoodleType>;
@@ -60,15 +60,8 @@ function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
 function reducer(state: State = initialState, action: Action, metaState: Meta) {
   switch (action.type) {
     case FETCH_DOODLES_SLICE:
-      return inflate(action.doodles, metaState);
-
     case STREAM_DOODLES:
-      // Add remaining doodles without invoking re-render
-      inflate(action.doodles, metaState)
-        .slice(sliceSize)
-        .forEach(doodle => state.push(doodle));
-
-      return state;
+      return inflate(action.doodles, metaState);
 
     default:
       return state;

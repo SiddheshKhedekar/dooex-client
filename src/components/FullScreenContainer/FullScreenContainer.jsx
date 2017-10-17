@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import FullScreen from 'components/FullScreen';
 
-import { loadDoodles } from 'modules/doodles/reducer';
+import { loadDoodles } from 'reducers/doodles';
 
 type Props = { loadDoodles: Function };
 
