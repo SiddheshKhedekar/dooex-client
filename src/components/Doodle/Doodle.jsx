@@ -5,7 +5,7 @@ import type { Location } from 'react-router-dom';
 import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import Tile from 'components/Tile';
 
@@ -17,12 +17,9 @@ type Props = DoodleType & {
 
 class Doodle extends Component<Props> {
   modalPathname(modalType: string) {
-    return {
-      ...this.props.location,
+    const pathname = this.props.location.pathname.replace(/\/$/, '');
 
-      pathname: `/${modalType}/${this.props.id}`,
-      state: { modal: true },
-    };
+    return `${pathname}/${modalType}/${this.props.id}`;
   }
 
   render() {
@@ -52,4 +49,4 @@ class Doodle extends Component<Props> {
   }
 }
 
-export default Doodle;
+export default withRouter(Doodle);

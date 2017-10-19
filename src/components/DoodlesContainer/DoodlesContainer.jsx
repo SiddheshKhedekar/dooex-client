@@ -29,8 +29,8 @@ function mapStateToProps(state, ownProps: Props) {
 
   const { pathname } = ownProps;
 
-  switch (pathname) {
-    case '/search':
+  switch (true) {
+    case pathname.startsWith('/search'):
       doodles = searchFilter(doodles, searchKeyword);
       break;
 

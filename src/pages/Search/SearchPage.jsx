@@ -12,17 +12,9 @@ type Props = {};
 
 function SearchPage(props: Props) {
   return [
-    <Route
-      key="InfoModal"
-      path="/info/:doodleId"
-      render={routeProps => <InfoModal {...routeProps} isModal />}
-    />,
+    <Route key="InfoModal" path="/search/info/:doodleId" component={InfoModal} />,
 
-    <Route
-      key="FullScreen"
-      path="/fullscreen/:doodleId"
-      render={routeProps => <FullScreen {...routeProps} isModal />}
-    />,
+    <Route key="FullScreen" path="/search/fullscreen/:doodleId" component={FullScreen} />,
 
     <SearchBar key="SearchBar" />,
 
