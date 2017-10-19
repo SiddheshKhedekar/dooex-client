@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';
-import TopNav from 'components/TopNav';
+import TopBar from 'components/TopBar';
 
 import Home from 'components/Home';
 
@@ -28,7 +28,7 @@ class HomePage extends Component<Props> {
         render={routeProps => <FullScreen {...routeProps} isModal />}
       />,
 
-      <TopNav key="TopNav" />,
+      <TopBar key="TopBar" />,
 
       <Home key="Home" {...this.props} />,
     ];
