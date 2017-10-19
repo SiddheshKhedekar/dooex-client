@@ -7,7 +7,7 @@ import { loadDoodles } from 'reducers/doodles';
 
 import DoodlesContainer from './DoodlesContainer';
 
-import styles from './Home.scss';
+import styles from './Main.scss';
 
 type Props = {
   loadDoodles: Function,
@@ -17,7 +17,7 @@ type State = {
   sliceSize: number,
 };
 
-class Home extends Component<Props, State> {
+class Main extends Component<Props, State> {
   state = {
     sliceSize: 10,
   };
@@ -62,7 +62,7 @@ class Home extends Component<Props, State> {
 
   render() {
     return (
-      <div key="Home" className="container-fluid">
+      <div key="Main" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <DoodlesContainer
@@ -80,4 +80,4 @@ const mapDispatchToProps = {
   loadDoodles,
 };
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Main);

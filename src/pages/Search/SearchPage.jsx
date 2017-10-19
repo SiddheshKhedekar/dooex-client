@@ -7,7 +7,7 @@ import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';
 import SearchBar from 'components/SearchBar';
 
-import Home from 'components/Home';
+import Main from 'components/Main';
 
 import styles from './SearchPage.css';
 
@@ -30,7 +30,7 @@ class SearchPage extends Component<Props> {
 
       <SearchBar key="SearchBar" />,
 
-      <Home key="Home" {...this.props} />,
+      <Main key="Main" {...this.props} />,
     ];
   }
 }

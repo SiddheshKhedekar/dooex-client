@@ -7,7 +7,7 @@ import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';
 import TopBar from 'components/TopBar';
 
-import Home from 'components/Home';
+import Main from 'components/Main';
 
 import styles from './HomePage.css';
 
@@ -30,7 +30,7 @@ class HomePage extends Component<Props> {
 
       <TopBar key="TopBar" />,
 
-      <Home key="Home" {...this.props} />,
+      <Main key="Main" {...this.props} />,
     ];
   }
 }
