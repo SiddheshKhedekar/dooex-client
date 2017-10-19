@@ -1,5 +1,7 @@
 // @flow
 
+import type { Location, RouterHistory } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -9,9 +11,9 @@ import styles from './InfoModal.scss';
 
 type Props = {
   doodle?: Object,
-  history: Object,
+  history: RouterHistory,
   isModal: boolean,
-  location: Object,
+  location: Location,
 };
 
 class InfoModal extends Component<Props> {

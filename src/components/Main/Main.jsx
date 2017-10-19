@@ -1,23 +1,27 @@
 // @flow
 
+import type { Location } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import DoodlesContainer from './DoodlesContainer';
+import DoodlesContainer from 'components/Main/DoodlesContainer';
 
 import { loadDoodles } from 'reducers/doodles';
 
-import styles from './Home.scss';
+import styles from './Main.scss';
 
 type Props = {
   loadDoodles: Function,
+  location: Location,
 };
 
 type State = {
   sliceSize: number,
 };
 
-class Home extends Component<Props, State> {
+class Main extends Component<Props, State> {
   state = {
     sliceSize: 10,
   };
@@ -31,6 +35,8 @@ class Home extends Component<Props, State> {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
+
+  shouldLoadNext = true;
 
   handleScroll = () => {
     // $FlowFixMe
@@ -58,14 +64,15 @@ class Home extends Component<Props, State> {
     this.setState({ sliceSize: this.state.sliceSize + 10 });
   };
 
-  shouldLoadNext = true;
-
   render() {
     return (
-      <div className="container-fluid">
+      <div key="Main" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
-            <DoodlesContainer sliceSize={this.state.sliceSize} />
+            <DoodlesContainer
+              sliceSize={this.state.sliceSize}
+              pathname={this.props.location.pathname}
+            />
           </div>
         </div>
       </div>
@@ -77,4 +84,4 @@ const mapDispatchToProps = {
   loadDoodles,
 };
 
-export default connect(null, mapDispatchToProps)(Home);
+export default withRouter(connect(null, mapDispatchToProps)(Main));

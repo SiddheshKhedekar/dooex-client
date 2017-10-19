@@ -1,5 +1,7 @@
 // @flow
 
+import type { Location } from 'react-router-dom';
+
 import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
@@ -10,7 +12,7 @@ import Tile from './Tile';
 import styles from './Doodle.scss';
 
 type Props = DoodleType & {
-  location: Object,
+  location: Location,
 };
 
 class Doodle extends Component<Props> {
@@ -41,7 +43,7 @@ class Doodle extends Component<Props> {
         </div>
 
         <Tile
-          link={this.modalPathname('fullscreen')}
+          location={this.modalPathname('fullscreen')}
           src={this.props.url}
           title={this.props.title}
         />

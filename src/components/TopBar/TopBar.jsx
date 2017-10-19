@@ -1,8 +1,9 @@
 // @flow
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import styles from './TopNav.scss';
+import styles from './TopBar.scss';
 
 function shareApp() {
   navigator.share({
@@ -24,18 +25,18 @@ function ShareButton() {
   );
 }
 
-function TopNav() {
+function TopBar() {
   return (
     <nav className={styles.root}>
-      <a className="navbar-brand" href="/">
-        Fixed
-      </a>
+      <Link className="navbar-brand" to="/">
+        DooEx
+      </Link>
 
       <ul className="navbar-nav">
         <li className="nav-item">
-          <button className={styles.action}>
+          <Link className={styles.action} to="/search">
             <span className="fa fa-fw fa-search" />
-          </button>
+          </Link>
         </li>
 
         {/* last item */}
@@ -47,4 +48,4 @@ function TopNav() {
   );
 }
 
-export default TopNav;
+export default TopBar;
