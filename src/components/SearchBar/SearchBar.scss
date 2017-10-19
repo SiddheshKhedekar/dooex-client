@@ -1,0 +1,25 @@
+.root {
+  composes: global(navbar) global(navbar-expand) global(fixed-top) global(navbar-light);
+
+  background-color: white;
+  box-shadow: 0 0 2px #eee;
+  justify-content: space-between;
+}
+
+.back {
+  composes: global(navbar-brand);
+}
+
+.reset {
+  composes: global(btn) global(pull-right);
+
+  border-radius: 100%;
+  width: 2.4rem;
+  height: 2.4rem;
+  line-height: 0;
+  padding: 0;
+
+  background-color: white;
+
+  font-size: 1.5rem;
+}

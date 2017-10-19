@@ -65,7 +65,10 @@ class Home extends Component<Props, State> {
       <div key="Home" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
-            <DoodlesContainer sliceSize={this.state.sliceSize} />
+            <DoodlesContainer
+              sliceSize={this.state.sliceSize}
+              pathname={this.props.location.pathname}
+            />
           </div>
         </div>
       </div>
