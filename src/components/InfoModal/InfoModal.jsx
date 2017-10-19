@@ -55,7 +55,7 @@ class InfoModal extends Component<Props> {
             </div>
 
             <div className="modal-body">
-              <InfoTable doodle={doodle} keys={['countries', 'tags']} />
+              <InfoTable doodle={doodle} />
             </div>
           </div>
         </div>

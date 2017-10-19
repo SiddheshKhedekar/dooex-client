@@ -4,36 +4,31 @@ import React from 'react';
 
 import styles from './InfoTable.scss';
 
-function spaced(arr) {
-  const nullComponent = <span className="text-muted">None</span>;
-
-  return arr.reduce((prev, curr) => [prev, ' ', curr], null) || nullComponent;
+function DataBadge({ item }: { item: string }) {
+  return <span className={styles.badge}>{item}</span>;
 }
 
-type Props = {
-  keys: Array<string>,
-  doodle: Object,
-};
+function Row({ doodle, property }: { doodle: Object, property: string }) {
+  const items = doodle[property];
 
-function InfoTable(props: Props) {
-  const { doodle, keys } = props;
+  const DataBadges = items.map(item => <DataBadge key={item} item={item} />);
 
+  return (
+    <tr>
+      <td className={styles.labelType}>{property}</td>
+
+      <td>{DataBadges.length > 0 ? DataBadges : <span className="text-muted">None</span>}</td>
+    </tr>
+  );
+}
+
+function InfoTable({ doodle }: { doodle: Object }) {
   return (
     <table className={styles.root}>
       <tbody>
-        {keys.map(k => (
-          <tr key={k}>
-            <td className={styles.labelType}>{k}</td>
+        <Row doodle={doodle} property="countries" />
 
-            <td>
-              {spaced(doodle[k].map(v => (
-                <span key={v} className={styles.badge}>
-                  {v}
-                </span>
-                )))}
-            </td>
-          </tr>
-        ))}
+        <Row doodle={doodle} property="tags" />
       </tbody>
     </table>
   );
