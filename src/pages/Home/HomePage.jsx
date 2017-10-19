@@ -5,9 +5,8 @@ import { Route } from 'react-router-dom';
 
 import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';
-import TopBar from 'components/TopBar';
-
 import Main from 'components/Main';
+import TopBar from 'components/TopBar';
 
 type Props = {};
 
@@ -27,7 +26,7 @@ function HomePage(props: Props) {
 
     <TopBar key="TopBar" />,
 
-    <Main key="Main" {...props} />,
+    <Main key="Main" />,
   ];
 }
 

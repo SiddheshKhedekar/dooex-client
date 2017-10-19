@@ -4,7 +4,6 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import HomePage from 'pages/Home';
-
 import SearchPage from 'pages/Search';
 
 import './App.scss';

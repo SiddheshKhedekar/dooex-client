@@ -1,5 +1,7 @@
 // @flow
 
+import type { Location, RouterHistory } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -7,9 +9,9 @@ import styles from './FullScreen.css';
 
 type Props = {
   doodle: Object,
-  history: Object,
+  history: RouterHistory,
   isModal: boolean,
-  location: Object,
+  location: Location,
 };
 
 class FullScreen extends Component<Props> {

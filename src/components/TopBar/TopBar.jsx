@@ -28,9 +28,9 @@ function ShareButton() {
 function TopBar() {
   return (
     <nav className={styles.root}>
-      <a className="navbar-brand" href="/">
-        Fixed
-      </a>
+      <Link className="navbar-brand" to="/">
+        DooEx
+      </Link>
 
       <ul className="navbar-nav">
         <li className="nav-item">

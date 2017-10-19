@@ -55,7 +55,7 @@ class SearchBar extends Component<Props> {
   render() {
     return (
       <nav className={styles.root}>
-        <Link className={styles.back} to="/" href="/">
+        <Link className={styles.back} to="/">
           <span className="fa fa-fw fa-angle-left" />
         </Link>
 

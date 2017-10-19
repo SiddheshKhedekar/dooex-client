@@ -1,5 +1,7 @@
 // @flow
 
+import type { Location } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,9 +10,9 @@ import Loader from './Loader';
 import styles from './Tile.css';
 
 type Props = {
-  link: Object,
-  title: string,
+  location: Location,
   src: string,
+  title: string,
 };
 
 type State = {
@@ -46,7 +48,7 @@ class Tile extends Component<Props, State> {
 
   render() {
     return (
-      <Link to={this.props.link} href={this.props.link} className={styles.root}>
+      <Link to={this.props.location} className={styles.root}>
         {this.renderLoader()}
 
         <img

@@ -5,9 +5,8 @@ import { Route } from 'react-router-dom';
 
 import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';
-import SearchBar from 'components/SearchBar';
-
 import Main from 'components/Main';
+import SearchBar from 'components/SearchBar';
 
 type Props = {};
 
@@ -27,7 +26,7 @@ function SearchPage(props: Props) {
 
     <SearchBar key="SearchBar" />,
 
-    <Main key="Main" {...props} />,
+    <Main key="Main" />,
   ];
 }
 
