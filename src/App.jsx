@@ -38,7 +38,7 @@ class App extends Component<Props> {
 
     return (
       <div>
-        <TopNav key="TopNav" />
+        <TopNav />
 
         <Route exact={!isModal} path="/" component={Home} />
 

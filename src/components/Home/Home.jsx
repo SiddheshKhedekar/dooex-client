@@ -62,7 +62,7 @@ class Home extends Component<Props, State> {
 
   render() {
     return (
-      <div className="container-fluid" key="Home">
+      <div className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <DoodlesContainer sliceSize={this.state.sliceSize} />
