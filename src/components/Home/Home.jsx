@@ -2,10 +2,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-
-import InfoModal from 'components/InfoModal';
-import FullScreen from 'components/FullScreen';
 
 import { loadDoodles } from 'reducers/doodles';
 
@@ -65,27 +61,15 @@ class Home extends Component<Props, State> {
   shouldLoadNext = true;
 
   render() {
-    return [
-      <Route
-        key="InfoModal"
-        path="/info/:doodleId"
-        render={routeProps => <InfoModal {...routeProps} isModal />}
-      />,
-
-      <Route
-        key="FullScreen"
-        path="/fullscreen/:doodleId"
-        render={routeProps => <FullScreen {...routeProps} isModal />}
-      />,
-
+    return (
       <div key="Home" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <DoodlesContainer sliceSize={this.state.sliceSize} />
           </div>
         </div>
-      </div>,
-    ];
+      </div>
+    );
   }
 }
 
