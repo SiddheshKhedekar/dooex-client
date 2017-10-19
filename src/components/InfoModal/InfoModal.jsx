@@ -5,7 +5,7 @@ import type { Location, RouterHistory } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import InfoTable from './InfoTable';
+import InfoTable from 'components/InfoTable';
 
 import styles from './InfoModal.scss';
 
@@ -17,7 +17,9 @@ type Props = {
 };
 
 class InfoModal extends Component<Props> {
-  backdrop = null;
+  static defaultProps = {
+    isModal: true,
+  };
 
   close = () => {
     if (this.props.isModal) {

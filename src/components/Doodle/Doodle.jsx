@@ -7,7 +7,7 @@ import type { Doodle as DoodleType } from 'modules/types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Tile from './Tile';
+import Tile from 'components/Tile';
 
 import styles from './Doodle.scss';
 

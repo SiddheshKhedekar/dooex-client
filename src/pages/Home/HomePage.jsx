@@ -12,17 +12,9 @@ type Props = {};
 
 function HomePage(props: Props) {
   return [
-    <Route
-      key="InfoModal"
-      path="/info/:doodleId"
-      render={routeProps => <InfoModal {...routeProps} isModal />}
-    />,
+    <Route key="InfoModal" path="/info/:doodleId" component={InfoModal} />,
 
-    <Route
-      key="FullScreen"
-      path="/fullscreen/:doodleId"
-      render={routeProps => <FullScreen {...routeProps} isModal />}
-    />,
+    <Route key="FullScreen" path="/fullscreen/:doodleId" component={FullScreen} />,
 
     <TopBar key="TopBar" />,
 

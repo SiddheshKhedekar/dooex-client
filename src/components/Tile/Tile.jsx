@@ -5,7 +5,7 @@ import type { Location } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loader from './Loader';
+import Loader from 'components/Loader';
 
 import styles from './Tile.css';
 

@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import DoodlesContainer from 'components/Main/DoodlesContainer';
+import DoodlesContainer from 'components/DoodlesContainer';
 
 import { loadDoodles } from 'reducers/doodles';
 

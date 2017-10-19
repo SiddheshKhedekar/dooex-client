@@ -5,7 +5,7 @@ import type { Doodle as DoodleType } from 'modules/types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Doodle from 'components/Main/DoodlesContainer/Doodle';
+import Doodle from 'components/Doodle';
 
 import searchFilter from 'filters/searchFilter';
 
