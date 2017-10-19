@@ -1,5 +1,7 @@
 // @flow
 
+import type { Doodle } from 'modules/types';
+
 import React from 'react';
 
 import styles from './InfoTable.scss';
@@ -8,7 +10,7 @@ function DataBadge({ item }: { item: string }) {
   return <span className={styles.badge}>{item}</span>;
 }
 
-function Row({ doodle, property }: { doodle: Object, property: string }) {
+function Row({ doodle, property }: { doodle: Doodle, property: string }) {
   const items = doodle[property];
 
   const DataBadges = items.map(item => <DataBadge key={item} item={item} />);
@@ -22,7 +24,7 @@ function Row({ doodle, property }: { doodle: Object, property: string }) {
   );
 }
 
-function InfoTable({ doodle }: { doodle: Object }) {
+function InfoTable({ doodle }: { doodle: Doodle }) {
   return (
     <table className={styles.root}>
       <tbody>

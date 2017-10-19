@@ -2,13 +2,15 @@
 
 import type { Location, RouterHistory } from 'react-router-dom';
 
+import type { Doodle } from 'modules/types';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './FullScreen.css';
 
 type Props = {
-  doodle: Object,
+  doodle: Doodle,
   history: RouterHistory,
   isModal: boolean,
   location: Location,
@@ -17,6 +19,7 @@ type Props = {
 class FullScreen extends Component<Props> {
   static defaultProps = {
     doodle: null,
+    isModal: true,
   };
 
   close = () => {
