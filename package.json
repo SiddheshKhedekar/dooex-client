@@ -99,6 +99,9 @@
     ]
   },
   "eslintConfig": {
+    "env": {
+      "serviceworker": true
+    },
     "extends": [
       "airbnb",
       "react-app"
