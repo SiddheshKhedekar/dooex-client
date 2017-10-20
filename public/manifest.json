@@ -1,15 +1,18 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "author": "Shirsh Zibbu | zhirzh@github",
+  "background_color": "#ffffff",
+  "description": "Explore Google doodles",
+  "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "name": "DooEx",
+  "orientation": "portrait",
+  "short_name": "DooEx",
+  "start_url": "/",
+  "theme_color": "#ffffff"
 }

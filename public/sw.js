@@ -13,3 +13,8 @@ sw.router.registerRoute(
     cacheName: 'doodles',
   }),
 );
+
+sw.router.registerRoute(/static/, sw.strategies.cacheFirst());
+['/', '/favicon.ico'].forEach((url) => {
+  sw.router.registerRoute(url, sw.strategies.cacheFirst());
+});
