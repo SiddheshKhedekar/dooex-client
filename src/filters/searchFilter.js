@@ -1,6 +1,8 @@
 // @flow
 
-function searchFilter(doodles: Array<Object>, keyword: string = ''): Array<Object> {
+import type { Doodle } from 'modules/types';
+
+function searchFilter(doodles: Array<Doodle>, keyword: string = ''): Array<Doodle> {
   if (keyword === '') {
     return [];
   }

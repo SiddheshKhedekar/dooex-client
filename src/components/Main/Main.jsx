@@ -13,6 +13,7 @@ import { loadDoodles } from 'reducers/doodles';
 import styles from './Main.scss';
 
 type Props = {
+  doodlesCount: number,
   loadDoodles: Function,
   location: Location,
 };
@@ -27,7 +28,9 @@ class Main extends Component<Props, State> {
   };
 
   componentDidMount() {
-    this.props.loadDoodles();
+    if (this.props.doodlesCount === 0) {
+      this.props.loadDoodles();
+    }
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -80,8 +83,14 @@ class Main extends Component<Props, State> {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    doodlesCount: state.doodles.length,
+  };
+}
+
 const mapDispatchToProps = {
   loadDoodles,
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

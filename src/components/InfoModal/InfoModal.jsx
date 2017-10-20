@@ -2,6 +2,8 @@
 
 import type { Location, RouterHistory } from 'react-router-dom';
 
+import type { Doodle } from 'modules/types';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -10,7 +12,7 @@ import InfoTable from 'components/InfoTable';
 import styles from './InfoModal.scss';
 
 type Props = {
-  doodle?: Object,
+  doodle: Doodle,
   history: RouterHistory,
   isModal: boolean,
   location: Location,
@@ -18,6 +20,7 @@ type Props = {
 
 class InfoModal extends Component<Props> {
   static defaultProps = {
+    Doodle: null,
     isModal: true,
   };
 

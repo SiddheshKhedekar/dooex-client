@@ -9,21 +9,14 @@ import { fetchMeta } from 'reducers/meta';
 type State = Array<DoodleType>;
 type DeflatedDoodle = Array<any>;
 
-const sliceSize = 10;
 const initialState: State = [];
 
-const FETCH_DOODLES_SLICE = 'FETCH_DOODLES_SLICE';
-const STREAM_DOODLES = 'STREAM_DOODLES';
+const FETCH_DOODLES = 'FETCH_DOODLES';
 
-type Action =
-  | {
-      type: 'FETCH_DOODLES_SLICE',
-      doodles: Array<DeflatedDoodle>,
-    }
-  | {
-      type: 'STREAM_DOODLES',
-      doodles: Array<DeflatedDoodle>,
-    };
+type Action = {
+  type: 'FETCH_DOODLES',
+  doodles: Array<DeflatedDoodle>,
+};
 
 function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
   const {
@@ -59,8 +52,7 @@ function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
 
 function reducer(state: State = initialState, action: Action, metaState: Meta) {
   switch (action.type) {
-    case FETCH_DOODLES_SLICE:
-    case STREAM_DOODLES:
+    case FETCH_DOODLES:
       return inflate(action.doodles, metaState);
 
     default:
@@ -68,12 +60,22 @@ function reducer(state: State = initialState, action: Action, metaState: Meta) {
   }
 }
 
-async function fetchDoodlesSlice(dispatch) {
+async function fetchDoodles(dispatch, sliceSize = null) {
   try {
-    const doodles = await fetchJson(`/doodles/slice/${sliceSize}`);
+    let url;
+    switch (sliceSize) {
+      case null:
+        url = '/doodles/all';
+        break;
+
+      default:
+        url = `/doodles/slice/${sliceSize}`;
+    }
+
+    const doodles = await fetchJson(url);
 
     dispatch({
-      type: FETCH_DOODLES_SLICE,
+      type: FETCH_DOODLES,
       doodles,
     });
   } catch (err) {
@@ -81,36 +83,12 @@ async function fetchDoodlesSlice(dispatch) {
   }
 }
 
-function streamDoodles(dispatch) {
-  return new Promise((res) => {
-    const doodles = [];
-
-    const socket = new WebSocket('ws://localhost:8000/doodles/stream');
-
-    socket.onmessage = ({ data }) => {
-      // $FlowFixMe
-      const doodle = JSON.parse(data);
-
-      doodles.push(doodle);
-    };
-
-    socket.onclose = () => {
-      dispatch({
-        type: STREAM_DOODLES,
-        doodles,
-      });
-
-      res();
-    };
-  });
-}
-
 function loadDoodles() {
   return async (dispatch: Dispatch) => {
     await fetchMeta(dispatch);
+    await fetchDoodles(dispatch, 10);
 
-    fetchDoodlesSlice(dispatch);
-    streamDoodles(dispatch);
+    fetchDoodles(dispatch);
   };
 }
 
