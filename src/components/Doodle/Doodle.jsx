@@ -39,11 +39,9 @@ class Doodle extends Component<Props> {
           <h4 className={styles.title}>{this.props.title}</h4>
         </div>
 
-        <Tile
-          location={this.modalPathname('fullscreen')}
-          src={this.props.url}
-          title={this.props.title}
-        />
+        <Link to={this.modalPathname('fullscreen')} className={styles.tileLink}>
+          <Tile src={this.props.url} title={this.props.title} />
+        </Link>
       </div>
     );
   }

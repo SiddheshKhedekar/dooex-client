@@ -1,65 +1,63 @@
 // @flow
 
-import type { Location } from 'react-router-dom';
-
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 
 import styles from './Tile.css';
 
 type Props = {
-  location: Location,
   src: string,
   title: string,
 };
 
 type State = {
-  loaded: boolean,
+  ready: boolean,
 };
 
 class Tile extends Component<Props, State> {
   state = {
-    loaded: false,
+    ready: false,
   };
 
-  handleError = () => {
+  componentDidMount() {
+    const img = new Image();
+    img.src = this.props.src;
+    img.onload = this.handleLoad;
+    img.onerror = this.handleError;
+  }
+
+  handleError = (e: Event) => {
     // $FlowFixMe
-    this.refImg.src = `${this.props.src}?${+new Date()}`;
+    const img = e.path[0];
+
+    // bail
+    if (navigator.onLine === false) {
+      return;
+    }
+
+    // $FlowFixMe
+    img.src = `${this.props.src}?${+new Date()}`;
   };
 
   handleLoad = () => {
-    // $FlowFixMe
-    this.refImg.className = styles.img;
-
-    this.setState({ loaded: true });
+    this.setState({ ready: true });
   };
 
   refImg = null;
 
-  renderLoader() {
-    if (this.state.loaded) {
-      return null;
+  render() {
+    if (this.state.ready === false) {
+      return <Loader />;
     }
 
-    return <Loader />;
-  }
-
-  render() {
     return (
-      <Link to={this.props.location} className={styles.root}>
-        {this.renderLoader()}
-
-        <img
-          className={styles.imgHidden}
-          src={this.props.src}
-          alt={this.props.title}
-          ref={img => (this.refImg = img)}
-          onLoad={this.handleLoad}
-          onError={this.handleError}
-        />
-      </Link>
+      <img
+        className={styles.root}
+        src={this.props.src}
+        alt={this.props.title}
+        ref={img => (this.refImg = img)}
+      />
     );
   }
 }
