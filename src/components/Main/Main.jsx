@@ -1,10 +1,7 @@
 // @flow
 
-import type { Location } from 'react-router-dom';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import DoodlesContainer from 'components/DoodlesContainer';
 
@@ -15,7 +12,6 @@ import styles from './Main.scss';
 type Props = {
   doodlesCount: number,
   loadDoodles: Function,
-  location: Location,
 };
 
 type State = {
@@ -72,10 +68,7 @@ class Main extends Component<Props, State> {
       <div key="Main" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
-            <DoodlesContainer
-              sliceSize={this.state.sliceSize}
-              pathname={this.props.location.pathname}
-            />
+            <DoodlesContainer sliceSize={this.state.sliceSize} />
           </div>
         </div>
       </div>
@@ -93,4 +86,4 @@ const mapDispatchToProps = {
   loadDoodles,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
