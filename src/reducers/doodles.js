@@ -1,22 +1,23 @@
 // @flow
 
-import type { Doodle as DoodleType, Dispatch, Meta } from 'modules/types';
+import type { Dispatch, Doodle, Meta } from 'modules/types';
 
 import fetchJson from 'modules/fetch-json';
 import { fetchMeta } from 'reducers/meta';
 
 // $FlowFixMe
-type State = Array<DoodleType>;
+type State = Array<Doodle>;
+
 type DeflatedDoodle = Array<any>;
-
-const initialState: State = [];
-
-const FETCH_DOODLES = 'FETCH_DOODLES';
 
 type Action = {
   type: 'FETCH_DOODLES',
   doodles: Array<DeflatedDoodle>,
 };
+
+const initialState: State = [];
+
+const FETCH_DOODLES = 'doodles/FETCH_DOODLES';
 
 function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
   const {

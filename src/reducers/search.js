@@ -4,11 +4,12 @@ const UPDATE_KEYWORD = 'search/UPDATE_KEYWORD';
 const RESET_KEYWORD = 'search/RESET_KEYWORD';
 
 type State = string;
-const initialState = '';
 
 type Action = { type: 'search/UPDATE_KEYWORD', keyword: string } | { type: 'search/RESET_KEYWORD' };
 
-function reducer(state: State = initialState, action: Action) {
+const initialState: State = '';
+
+function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case UPDATE_KEYWORD:
       return action.keyword;

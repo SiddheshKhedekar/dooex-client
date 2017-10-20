@@ -6,6 +6,11 @@ import fetchJson from 'modules/fetch-json';
 
 type State = Meta;
 
+type Action = {
+  type: 'FETCH_META',
+  meta: State,
+};
+
 const initialState: State = {
   countries: [],
   linkTypes: [],
@@ -14,12 +19,7 @@ const initialState: State = {
   urlPrefixes: {},
 };
 
-const FETCH_META = 'FETCH_META';
-
-type Action = {
-  type: 'FETCH_META',
-  meta: State,
-};
+const FETCH_META = 'meta/FETCH_META';
 
 function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
