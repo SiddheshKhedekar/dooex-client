@@ -35,8 +35,6 @@ class Main extends Component<Props, State> {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  shouldLoadNext = true;
-
   handleScroll = () => {
     // $FlowFixMe
     const { scrollingElement } = document;
@@ -62,6 +60,8 @@ class Main extends Component<Props, State> {
 
     this.setState({ sliceSize: this.state.sliceSize + 10 });
   };
+
+  shouldLoadNext = true;
 
   render() {
     return (

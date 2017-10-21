@@ -20,8 +20,17 @@ class SearchBar extends Component<Props> {
     this.props.resetKeyword();
   }
 
-  timeoutId = null;
   refInput = null;
+  resetKeyword = () => {
+    clearTimeout(this.timeoutId);
+
+    this.props.resetKeyword();
+
+    // $FlowFixMe
+    this.refInput.focus();
+  };
+
+  timeoutId = null;
 
   updateKeyword = (e) => {
     clearTimeout(this.timeoutId);
@@ -41,15 +50,6 @@ class SearchBar extends Component<Props> {
         this.props.updateKeyword(currKeyword);
       }, 600);
     }
-  };
-
-  resetKeyword = () => {
-    clearTimeout(this.timeoutId);
-
-    this.props.resetKeyword();
-
-    // $FlowFixMe
-    this.refInput.focus();
   };
 
   render() {

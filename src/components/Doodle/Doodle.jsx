@@ -37,6 +37,18 @@ class Doodle extends Component<Props, State> {
     this.setState({ isSaving: false });
   };
 
+  saveClass = () => {
+    if (this.state.isSaving) {
+      return styles.isSaving;
+    }
+
+    if (this.props.doodle.isSaved) {
+      return styles.saved;
+    }
+
+    return styles.notSaved;
+  };
+
   async toggleSave() {
     const { doodle } = this.props;
 
@@ -63,18 +75,6 @@ class Doodle extends Component<Props, State> {
       isSaved: !doodle.isSaved,
     });
   }
-
-  saveClass = () => {
-    if (this.state.isSaving) {
-      return styles.isSaving;
-    }
-
-    if (this.props.doodle.isSaved) {
-      return styles.saved;
-    }
-
-    return styles.notSaved;
-  };
 
   render() {
     const { doodle } = this.props;
