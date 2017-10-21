@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 
 import Doodle from 'components/Doodle';
 
+import { updateDoodle } from 'reducers/doodles';
 import searchFilter from 'filters/searchFilter';
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
   location: Location,
   pathname: string,
   sliceSize: number,
+  updateDoodle: Function,
 };
 
 function DoodlesContainer(props: Props) {
@@ -24,7 +26,14 @@ function DoodlesContainer(props: Props) {
 
   return (
     <div className="col-12">
-      {props.doodles.map(doodle => <Doodle {...doodle} key={doodle.id} basepath={basepath} />)}
+      {props.doodles.map(doodle => (
+        <Doodle
+          key={doodle.id}
+          doodle={doodle}
+          basepath={basepath}
+          updateDoodle={props.updateDoodle}
+        />
+      ))}
     </div>
   );
 }
@@ -48,4 +57,8 @@ function mapStateToProps(state, ownProps: Props) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(DoodlesContainer));
+const mapDispatchToProps = {
+  updateDoodle,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DoodlesContainer));

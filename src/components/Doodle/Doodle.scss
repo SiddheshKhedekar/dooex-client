@@ -42,3 +42,19 @@ $actionBtnSize: 0.3rem;
 .tileLink {
   height: 200px;
 }
+
+.icon {
+  composes: global(fa) global(fa-fw);
+}
+
+.saved {
+  composes: icon global(fa-star);
+}
+
+.notSaved {
+  composes: icon global(fa-star-o);
+}
+
+.isSaving {
+  composes: icon global(fa-star-half-o);
+}

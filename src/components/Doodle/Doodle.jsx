@@ -2,41 +2,105 @@
 
 import type { Doodle as DoodleType } from 'modules/types';
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import Alert from 'components/Alert';
 import Tile from 'components/Tile';
+
+import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
 
 import styles from './Doodle.scss';
 
 type Props = {
-  ...DoodleType,
-
   basepath: string,
+  doodle: DoodleType,
+  updateDoodle: Function,
 };
 
-function Doodle(props: Props) {
-  return (
-    <div className={styles.root}>
-      <div className={styles.header}>
-        <div className={styles.actionBtns}>
-          <Link className={styles.actionBtn} to={`${props.basepath}/info/${props.id}`}>
-            <span className="fa fa-fw fa-info" />
-          </Link>
+type SAVE_STATUS = 'SAVED' | 'NOT_SAVED' | 'IS_SAVING';
 
-          <button className={styles.actionBtn}>
-            <span className="fa fa-fw fa-star-o" />
-          </button>
+type State = {
+  isSaving: boolean,
+};
+
+class Doodle extends Component<Props, State> {
+  state = {
+    isSaving: false,
+  };
+
+  handleClick = async () => {
+    this.setState({ isSaving: true });
+
+    await this.toggleSave();
+
+    this.setState({ isSaving: false });
+  };
+
+  async toggleSave() {
+    const { doodle } = this.props;
+
+    try {
+      if (this.props.doodle.isSaved) {
+        await uncacheDoodle(doodle);
+
+        Alert(`Unsaved "${doodle.title}"`, 'success');
+      } else {
+        await cacheDoodle(doodle);
+
+        Alert(`Saved "${doodle.title}"`, 'success');
+      }
+    } catch (err) {
+      console.error(err);
+
+      Alert(`${doodle.isSaved ? 'Unsave' : 'Save'} "${doodle.title}" failed`, 'danger');
+
+      return;
+    }
+
+    this.props.updateDoodle({
+      ...doodle,
+      isSaved: !doodle.isSaved,
+    });
+  }
+
+  saveClass = () => {
+    if (this.state.isSaving) {
+      return styles.isSaving;
+    }
+
+    if (this.props.doodle.isSaved) {
+      return styles.saved;
+    }
+
+    return styles.notSaved;
+  };
+
+  render() {
+    const { doodle } = this.props;
+
+    return (
+      <div className={styles.root}>
+        <div className={styles.header}>
+          <div className={styles.actionBtns}>
+            <Link className={styles.actionBtn} to={`${this.props.basepath}/info/${doodle.id}`}>
+              <span className="fa fa-fw fa-info" />
+            </Link>
+
+            <button className={styles.actionBtn} onClick={this.handleClick}>
+              <span className={this.saveClass()} />
+            </button>
+          </div>
+
+          <h4 className={styles.title}>{doodle.title}</h4>
         </div>
 
-        <h4 className={styles.title}>{props.title}</h4>
+        <Link to={`${this.props.basepath}/fullscreen/${doodle.id}`} className={styles.tileLink}>
+          <Tile src={doodle.url} title={doodle.title} />
+        </Link>
       </div>
-
-      <Link to={`${props.basepath}/fullscreen/${props.id}`} className={styles.tileLink}>
-        <Tile src={props.url} title={props.title} />
-      </Link>
-    </div>
-  );
+    );
+  }
 }
 
 export default Doodle;
