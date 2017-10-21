@@ -3,6 +3,7 @@
 import type { Dispatch, Doodle, Meta } from 'modules/types';
 
 import fetchJson from 'modules/fetch-json';
+import inflate from 'modules/inflate-doodles';
 import { fetchMeta } from 'reducers/meta';
 
 // $FlowFixMe
@@ -18,40 +19,6 @@ const initialState: State = [];
 
 const FETCH_DOODLES = 'FETCH_DOODLES';
 const UPDATE_DOODLE = 'UPDATE_DOODLE';
-
-function inflate(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
-  const {
-    countries, linkTypes, schema, tags, urlPrefixes,
-  } = meta;
-
-  const doodles = deflatedDoodles.map((_, i) => {
-    const doodle = {};
-
-    schema.forEach((key, j) => {
-      doodle[key] = deflatedDoodles[i][j];
-    });
-
-    linkTypes
-      // $FlowFixMe
-      .filter(linkType => schema.includes(linkType))
-      .filter(linkType => doodle[linkType] !== null)
-      .forEach((linkType) => {
-        const urlPrefixIdx = doodle[linkType][0];
-
-        const urlPrefix = urlPrefixes[urlPrefixIdx];
-        doodle[linkType] = doodle[linkType].replace(urlPrefixIdx, urlPrefix);
-      });
-
-    doodle.countries = doodle.countries.map(cIdx => countries[cIdx]);
-    doodle.tags = doodle.tags.map(tIdx => tags[tIdx]);
-
-    doodle.isSaved = false;
-
-    return doodle;
-  });
-
-  return doodles;
-}
 
 function reducer(state: State = initialState, action: Action, metaState: Meta) {
   switch (action.type) {
