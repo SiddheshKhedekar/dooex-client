@@ -26,16 +26,16 @@ class Doodle extends Component<Props> {
       if (this.props.doodle.isSaved) {
         await uncacheDoodle(doodle);
 
-        Alert(`Unsaved "${doodle.title}"`);
+        Alert(`Unsaved "${doodle.title}"`, 'success');
       } else {
         await cacheDoodle(doodle);
 
-        Alert(`Saved "${doodle.title}"`, 'primary');
+        Alert(`Saved "${doodle.title}"`, 'success');
       }
     } catch (err) {
       console.error(err);
 
-      alert(`${doodle.isSaved ? 'UNSAVE' : 'SAVE'} FAILED`);
+      Alert(`${doodle.isSaved ? 'Unsave' : 'Save'} "${doodle.title}" failed`, 'danger');
 
       return;
     }
