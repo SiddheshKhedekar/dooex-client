@@ -38,3 +38,12 @@ if (module.hot) {
     render(nextApp);
   });
 }
+
+if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate } = require('why-did-you-update');
+
+  whyDidYouUpdate(React, {
+    // include: /^.*$/,
+    // exclude: /^.*$/,
+  });
+}
