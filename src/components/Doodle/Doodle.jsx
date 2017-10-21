@@ -5,6 +5,7 @@ import type { Doodle as DoodleType } from 'modules/types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import Alert from 'components/Alert';
 import Tile from 'components/Tile';
 
 import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
@@ -24,8 +25,12 @@ class Doodle extends Component<Props> {
     try {
       if (this.props.doodle.isSaved) {
         await uncacheDoodle(doodle);
+
+        new Alert(`Unsaved "${doodle.title}"`);
       } else {
         await cacheDoodle(doodle);
+
+        new Alert(`Saved "${doodle.title}"`, 'primary');
       }
     } catch (err) {
       console.error(err);

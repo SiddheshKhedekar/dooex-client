@@ -1,0 +1,33 @@
+.container {
+  position: fixed;
+  top: 56px;
+  right: 0;
+}
+
+.alert {
+  composes: global(alert);
+
+  margin: 4px;
+
+  opacity: 0;
+
+  transform: translateX(20px);
+
+  transition: opacity 400ms, transform 400ms;
+}
+
+.show {
+  composes: alert;
+
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+.hide {
+  composes: alert;
+
+  opacity: 0;
+
+  transform: translateX(20px);
+}
