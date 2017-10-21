@@ -26,11 +26,11 @@ class Doodle extends Component<Props> {
       if (this.props.doodle.isSaved) {
         await uncacheDoodle(doodle);
 
-        new Alert(`Unsaved "${doodle.title}"`);
+        Alert(`Unsaved "${doodle.title}"`);
       } else {
         await cacheDoodle(doodle);
 
-        new Alert(`Saved "${doodle.title}"`, 'primary');
+        Alert(`Saved "${doodle.title}"`, 'primary');
       }
     } catch (err) {
       console.error(err);
