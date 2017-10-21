@@ -18,8 +18,26 @@ type Props = {
   updateDoodle: Function,
 };
 
-class Doodle extends Component<Props> {
-  toggleSave = async () => {
+type SAVE_STATUS = 'SAVED' | 'NOT_SAVED' | 'IS_SAVING';
+
+type State = {
+  isSaving: boolean,
+};
+
+class Doodle extends Component<Props, State> {
+  state = {
+    isSaving: false,
+  };
+
+  handleClick = async () => {
+    this.setState({ isSaving: true });
+
+    await this.toggleSave();
+
+    this.setState({ isSaving: false });
+  };
+
+  async toggleSave() {
     const { doodle } = this.props;
 
     try {
@@ -44,6 +62,18 @@ class Doodle extends Component<Props> {
       ...doodle,
       isSaved: !doodle.isSaved,
     });
+  }
+
+  saveClass = () => {
+    if (this.state.isSaving) {
+      return styles.isSaving;
+    }
+
+    if (this.props.doodle.isSaved) {
+      return styles.saved;
+    }
+
+    return styles.notSaved;
   };
 
   render() {
@@ -57,8 +87,8 @@ class Doodle extends Component<Props> {
               <span className="fa fa-fw fa-info" />
             </Link>
 
-            <button className={styles.actionBtn} onClick={this.toggleSave}>
-              <span className={`fa fa-fw ${doodle.isSaved ? 'fa-star' : 'fa-star-o'}`} />
+            <button className={styles.actionBtn} onClick={this.handleClick}>
+              <span className={this.saveClass()} />
             </button>
           </div>
 

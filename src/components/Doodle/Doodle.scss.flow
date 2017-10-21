@@ -4,7 +4,11 @@ declare module.exports: {|
   +'actionBtn': string;
   +'actionBtns': string;
   +'header': string;
+  +'icon': string;
+  +'isSaving': string;
+  +'notSaved': string;
   +'root': string;
+  +'saved': string;
   +'tileLink': string;
   +'title': string;
 |};
