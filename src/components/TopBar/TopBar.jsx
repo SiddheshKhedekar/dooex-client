@@ -39,6 +39,12 @@ function TopBar() {
           </Link>
         </li>
 
+        <li className="nav-item">
+          <Link className={styles.action} to="/saved">
+            <span className="fa fa-fw fa-star" />
+          </Link>
+        </li>
+
         {/* last item */}
         <li className="nav-item">
           <ShareButton />

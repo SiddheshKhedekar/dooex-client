@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 import Doodle from 'components/Doodle';
 
 import { updateDoodle } from 'reducers/doodles';
+import savedFilter from 'filters/savedFilter';
 import searchFilter from 'filters/searchFilter';
 
 type Props = {
@@ -49,11 +50,16 @@ function mapStateToProps(state, ownProps: Props) {
       doodles = searchFilter(doodles, searchKeyword);
       break;
 
+    case pathname.startsWith('/saved'):
+      doodles = savedFilter(doodles);
+      break;
+
     default:
+      doodles = doodles.slice(0, ownProps.sliceSize);
   }
 
   return {
-    doodles: doodles.slice(0, ownProps.sliceSize),
+    doodles,
   };
 }
 

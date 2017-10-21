@@ -1,6 +1,6 @@
 function inflateDoodles(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
   const {
-    countries, linkTypes, schema, tags, urlPrefixes,
+    countries, linkTypes, savedDoodleIds, schema, tags, urlPrefixes,
   } = meta;
 
   const doodles = deflatedDoodles.map((_, i) => {
@@ -24,7 +24,7 @@ function inflateDoodles(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): Sta
     doodle.countries = doodle.countries.map(cIdx => countries[cIdx]);
     doodle.tags = doodle.tags.map(tIdx => tags[tIdx]);
 
-    doodle.isSaved = false;
+    doodle.isSaved = savedDoodleIds.includes(doodle.id);
 
     return doodle;
   });
