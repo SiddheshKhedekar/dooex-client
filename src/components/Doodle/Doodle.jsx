@@ -29,6 +29,14 @@ class Doodle extends Component<Props, State> {
     isSaving: false,
   };
 
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    if (nextProps.doodle === this.props.doodle && nextState.isSaving === this.state.isSaving) {
+      return false;
+    }
+
+    return true;
+  }
+
   handleClick = async () => {
     this.setState({ isSaving: true });
 

@@ -61,7 +61,13 @@ function reducer(state: State = initialState, action: Action, metaState: Meta) {
     case UPDATE_DOODLE: {
       const doodleIdx = state.findIndex(doodle => doodle.id === action.doodle.id);
 
-      return [...state.slice(0, doodleIdx), action.doodle, ...state.slice(doodleIdx + 1)];
+      return [
+        ...state.slice(0, doodleIdx),
+        {
+          ...action.doodle,
+        },
+        ...state.slice(doodleIdx + 1),
+      ];
     }
 
     default:
