@@ -11,7 +11,7 @@ import App from './App';
 
 import store from 'modules/store';
 
-import './index.scss';
+import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 function render(Component) {

@@ -7,8 +7,6 @@ import HomePage from 'pages/Home';
 import SavedPage from 'pages/Saved';
 import SearchPage from 'pages/Search';
 
-import './App.scss';
-
 function App() {
   return (
     <div>
