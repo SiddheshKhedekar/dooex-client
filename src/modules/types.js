@@ -6,11 +6,12 @@ type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 type Dispatch = (action: Action | ThunkAction) => any;
 
 type Doodle = {
-  id: string,
   aspect: number,
   countries: Array<string>,
   date: Date,
   hires_url: string,
+  id: string,
+  isSaved: boolean,
   name: string,
   standalone_html: string,
   tags: Array<string>,
