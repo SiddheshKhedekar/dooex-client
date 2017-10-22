@@ -81,6 +81,6 @@ function updateDoodle(doodle: Doodle) {
   };
 }
 
-export { loadDoodles, updateDoodle };
+export { UPDATE_DOODLE, loadDoodles, updateDoodle };
 
 export default reducer;
