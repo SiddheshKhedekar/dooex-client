@@ -11,7 +11,7 @@ import Tile from 'components/Tile';
 
 import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
 
-import styles from './Doodle.scss';
+import styles from './Doodle.css';
 
 type Props = {
   basepath: string,
@@ -57,8 +57,8 @@ class Doodle extends Component<Props> {
     return (
       <div className={styles.root}>
         <div className={styles.header}>
-          <div className={styles.actionBtns}>
-            <Link className={styles.actionBtn} to={`${this.props.basepath}/info/${doodle.id}`}>
+          <div className={styles.actions}>
+            <Link className="btn" to={`${this.props.basepath}/info/${doodle.id}`}>
               <span className="fa fa-fw fa-info" />
             </Link>
 

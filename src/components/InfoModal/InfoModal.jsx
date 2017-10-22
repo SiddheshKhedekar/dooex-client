@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import InfoTable from 'components/InfoTable';
 
-import styles from './InfoModal.scss';
+import styles from './InfoModal.css';
 
 type Props = {
   doodle: Doodle,

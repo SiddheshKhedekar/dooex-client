@@ -5,10 +5,6 @@
   display: block;
 }
 
-.body {
-  composes: global(modal-body);
-}
-
 .externalLink {
   composes: global(fa) global(fa-external-link);
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { updateKeyword, resetKeyword } from 'reducers/search';
 
-import styles from './SearchBar.scss';
+import styles from './SearchBar.css';
 
 type Props = {
   keyword: string,
@@ -55,7 +55,7 @@ class SearchBar extends Component<Props> {
   render() {
     return (
       <nav className={styles.root}>
-        <Link className={styles.back} to="/">
+        <Link className="navbar-brand" to="/">
           <span className="fa fa-fw fa-angle-left" />
         </Link>
 
