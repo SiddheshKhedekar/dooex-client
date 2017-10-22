@@ -46,8 +46,12 @@ class FullScreen extends Component<Props> {
     return (
       <img
         className={windowAspect > doodle.aspect ? styles.landscape : styles.portrait}
-        src={doodle.hires_url}
-        alt={doodle.title}
+        src={
+          this.props.doodle.isSaved
+            ? `/saved?${this.props.doodle.hires_url}`
+            : this.props.doodle.hires_url
+        }
+        alt={this.props.doodle.title}
       />
     );
   }
