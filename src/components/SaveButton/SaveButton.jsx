@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import styles from './SaveButton.scss';
+import styles from './SaveButton.css';
 
 type Props = {
   isSaved: boolean,

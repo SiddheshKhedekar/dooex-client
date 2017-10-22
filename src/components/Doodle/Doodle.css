@@ -1,13 +1,11 @@
-$actionBtnSize: 0.3rem;
-
 .root {
   composes: global(card) global(mb-lg-3) global(mb-xl-4);
 
   border-radius: 0;
   border-color: #eee;
 
-  margin-top: -1px; // covers up border overlap
-  padding: 1px; // prevent border flicker
+  margin-top: -1px; /* covers up border overlap */
+  padding: 1px; /* prevent border flicker */
 }
 
 .header {
@@ -23,20 +21,18 @@ $actionBtnSize: 0.3rem;
   padding: 6px;
 }
 
-.actionBtns {
+.actions {
   composes: global(btn-group) global(btn-group-sm) global(pull-right);
 }
 
-.actionBtn {
-  composes: global(btn);
+.actions > * {
+  padding: 0.2rem !important;
 
   background-color: transparent;
   border: none;
-  color: #333;
+  color: #444;
 
   font-size: 1.4rem !important;
-  padding-right: $actionBtnSize !important;
-  padding-left: $actionBtnSize !important;
 }
 
 .tileLink {

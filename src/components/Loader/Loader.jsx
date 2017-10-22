@@ -11,6 +11,7 @@ type Props = { begin: number };
 
 function Circle(props: Props) {
   const { begin } = props;
+
   return (
     <circle cx={r} cy={r} r="1">
       <animate

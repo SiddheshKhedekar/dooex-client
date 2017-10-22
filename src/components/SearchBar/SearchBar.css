@@ -1,17 +1,13 @@
 .root {
-  composes: global(navbar) global(navbar-expand) global(fixed-top) global(navbar-light);
+  composes: global(navbar) global(navbar-light) global(navbar-expand) global(fixed-top);
 
   background-color: white;
   box-shadow: 0 0 2px #eee;
   justify-content: space-between;
 }
 
-.back {
-  composes: global(navbar-brand);
-}
-
 .reset {
-  composes: global(btn) global(pull-right);
+  composes: global(btn);
 
   position: absolute;
   right: 20px;

@@ -4,7 +4,7 @@ import type { Doodle } from 'modules/types';
 
 import React from 'react';
 
-import styles from './InfoTable.scss';
+import styles from './InfoTable.css';
 
 function DataBadge({ item }: { item: string }) {
   return <span className={styles.badge}>{item}</span>;
