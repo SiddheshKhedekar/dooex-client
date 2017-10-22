@@ -1,3 +1,5 @@
+/* global sw */
+
 class TunnelHandler {
   constructor() {
     this.cache = sw.strategies.networkOnly();
@@ -13,7 +15,6 @@ class TunnelHandler {
     props.url.pathname = `/tunnel${props.url.pathname}`;
 
     const request = new Request(props.url);
-
     props.event = new FetchEvent('fetch', { request });
 
     return this.cache.handle(props);

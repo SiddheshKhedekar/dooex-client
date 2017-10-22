@@ -1,4 +1,4 @@
-/* global WorkboxSW */
+/* global WorkboxSW, SavedHandler, TunnelHandler */
 
 importScripts('/workbox/workbox-sw.dev.v2.1.0.js');
 

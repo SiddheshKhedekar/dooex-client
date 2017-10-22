@@ -1,3 +1,5 @@
+/* global sw */
+
 class SavedHandler {
   constructor() {
     this.cache = sw.strategies.cacheFirst({
