@@ -1,0 +1,27 @@
+.root {
+  composes: global(btn);
+
+  background-color: transparent;
+  border: none;
+  color: #333;
+
+  font-size: 1.4rem !important;
+  padding-right: 0.3rem !important;
+  padding-left: 0.3rem !important;
+}
+
+.saveIcon {
+  composes: global(fa) global(fa-fw);
+}
+
+.saved {
+  composes: saveIcon global(fa-star);
+}
+
+.notSaved {
+  composes: saveIcon global(fa-star-o);
+}
+
+.isSaving {
+  composes: saveIcon global(fa-star-half-o);
+}

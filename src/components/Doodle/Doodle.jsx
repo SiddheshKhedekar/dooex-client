@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Alert from 'components/Alert';
+import SaveButton from 'components/SaveButton';
 import Tile from 'components/Tile';
 
 import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
@@ -18,46 +19,16 @@ type Props = {
   updateDoodle: Function,
 };
 
-type SAVE_STATUS = 'SAVED' | 'NOT_SAVED' | 'IS_SAVING';
-
-type State = {
-  isSaving: boolean,
-};
-
-class Doodle extends Component<Props, State> {
-  state = {
-    isSaving: false,
-  };
-
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
-    if (nextProps.doodle === this.props.doodle && nextState.isSaving === this.state.isSaving) {
+class Doodle extends Component<Props> {
+  shouldComponentUpdate(nextProps: Props) {
+    if (nextProps.doodle === this.props.doodle) {
       return false;
     }
 
     return true;
   }
 
-  handleClick = async () => {
-    this.setState({ isSaving: true });
-
-    await this.toggleSave();
-
-    this.setState({ isSaving: false });
-  };
-
-  saveClass = () => {
-    if (this.state.isSaving) {
-      return styles.isSaving;
-    }
-
-    if (this.props.doodle.isSaved) {
-      return styles.saved;
-    }
-
-    return styles.notSaved;
-  };
-
-  async toggleSave() {
+  toggleSave = async () => {
     const { doodle } = this.props;
 
     try {
@@ -82,7 +53,7 @@ class Doodle extends Component<Props, State> {
       ...doodle,
       isSaved: !doodle.isSaved,
     });
-  }
+  };
 
   render() {
     const { doodle } = this.props;
@@ -95,9 +66,7 @@ class Doodle extends Component<Props, State> {
               <span className="fa fa-fw fa-info" />
             </Link>
 
-            <button className={styles.actionBtn} onClick={this.handleClick}>
-              <span className={this.saveClass()} />
-            </button>
+            <SaveButton onClick={this.toggleSave} isSaved={doodle.isSaved} />
           </div>
 
           <h4 className={styles.title}>{doodle.title}</h4>
