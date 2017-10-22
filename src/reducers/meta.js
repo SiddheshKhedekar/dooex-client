@@ -2,6 +2,7 @@
 
 import type { Dispatch, Meta } from 'modules/types';
 
+import { savedDoodleIdsLocalStorageKey } from 'modules/names';
 import fetchJson from 'modules/fetch-json';
 import { UPDATE_DOODLE } from 'reducers/doodles';
 
@@ -21,7 +22,7 @@ const initialState: State = {
   tags: [],
   urlPrefixes: {},
 
-  savedDoodleIds: JSON.parse(window.localStorage.getItem('saved')) || [],
+  savedDoodleIds: JSON.parse(window.localStorage.getItem(savedDoodleIdsLocalStorageKey)) || [],
 };
 
 const FETCH_META = 'meta/FETCH_META';

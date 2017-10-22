@@ -2,9 +2,9 @@
 
 import type { Doodle } from 'modules/types';
 
-const linkTypes = ['url', 'hires_url', 'standalone_html'];
+import { savedDoodlesCacheName as cacheName } from 'modules/names';
 
-const cacheName = 'saved';
+const linkTypes = ['url', 'hires_url', 'standalone_html'];
 
 /**
  * Filter out null links in doodle.
