@@ -38,7 +38,13 @@ class FullScreen extends Component<Props> {
     const { doodle } = this.props;
 
     if (doodle.type === 'interactive') {
-      return <iframe className={styles.iframe} src={doodle.standalone_html} title={doodle.title} />;
+      // Replace origin to convert remote URL into self-hosted URL
+      // so that service-worker can `fetch` it
+
+      const url = new URL(doodle.standalone_html);
+      const src = url.href.replace(url.origin, '');
+
+      return <iframe className={styles.iframe} src={src} title={doodle.title} />;
     }
 
     const windowAspect = window.screen.width / window.screen.height;
