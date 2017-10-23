@@ -9,7 +9,7 @@ const syncLocation = store => next => (action) => {
       const locationURL = new URL(window.location);
       locationURL.searchParams.set('search', action.keyword);
 
-      history.push(locationURL.search);
+      history.push(`${locationURL.pathname}${locationURL.search}`);
 
       break;
     }
@@ -18,7 +18,7 @@ const syncLocation = store => next => (action) => {
       const locationURL = new URL(window.location);
       locationURL.searchParams.delete('search');
 
-      history.push(locationURL.search);
+      history.push(`${locationURL.pathname}${locationURL.search}`);
 
       break;
     }
