@@ -34,32 +34,40 @@ class FullScreen extends Component<Props> {
     });
   };
 
-  renderDoodle() {
+  renderIframe() {
     const { doodle } = this.props;
 
-    if (doodle.type === 'interactive') {
-      // Replace origin to convert remote URL into self-hosted URL
-      // so that service-worker can `fetch` it
+    // Replace origin to convert remote URL into self-hosted URL
+    // so that service-worker can `fetch` it
 
-      const url = new URL(doodle.standalone_html);
-      const src = url.href.replace(url.origin, '');
+    const url = new URL(doodle.standalone_html);
+    const src = url.href.replace(url.origin, '');
 
-      return <iframe className={styles.iframe} src={src} title={doodle.title} />;
-    }
+    return <iframe className={styles.iframe} src={src} title={doodle.title} />;
+  }
+
+  renderImage() {
+    const { doodle } = this.props;
 
     const windowAspect = window.screen.width / window.screen.height;
 
     return (
       <img
         className={windowAspect > doodle.aspect ? styles.landscape : styles.portrait}
-        src={
-          this.props.doodle.isSaved
-            ? `/saved?${this.props.doodle.hires_url}`
-            : this.props.doodle.hires_url
-        }
-        alt={this.props.doodle.title}
+        src={doodle.isSaved ? `/saved?${doodle.hires_url}` : doodle.hires_url}
+        alt={doodle.title}
       />
     );
+  }
+
+  renderDoodle() {
+    switch (this.props.doodle.type) {
+      case 'interactive':
+        return this.renderIframe();
+
+      default:
+        return this.renderImage();
+    }
   }
 
   render() {
