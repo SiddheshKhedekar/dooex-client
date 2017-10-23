@@ -82,8 +82,9 @@ function mapStateToProps(state, ownProps: Props) {
       break;
 
     default:
-      doodles = doodles.slice(0, ownProps.sliceSize);
   }
+
+  doodles = doodles.slice(0, ownProps.sliceSize);
 
   return {
     doodles,
