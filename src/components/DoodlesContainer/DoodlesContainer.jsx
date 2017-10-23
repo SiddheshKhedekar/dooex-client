@@ -35,6 +35,8 @@ function DoodlesContainer(props: Props) {
           updateDoodle={props.updateDoodle}
         />
       ))}
+
+      <hr style={{ width: '85%' }} />
     </div>
   );
 }
