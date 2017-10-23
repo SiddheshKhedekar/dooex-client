@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 
 import HomePage from 'pages/Home';
 import SavedPage from 'pages/Saved';

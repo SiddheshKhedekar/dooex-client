@@ -3,12 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router';
 
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
 
+import history from 'modules/history';
 import store from 'modules/store';
 
 import './index.css';
@@ -17,11 +18,11 @@ import registerServiceWorker from './registerServiceWorker';
 function render(Component) {
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <AppContainer>
           <Route component={Component} />
         </AppContainer>
-      </BrowserRouter>
+      </Router>
     </Provider>,
     document.getElementById('root'),
   );
