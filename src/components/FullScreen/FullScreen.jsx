@@ -1,6 +1,6 @@
 // @flow
 
-import type { Location, RouterHistory } from 'react-router-dom';
+import type { Location, RouterHistory } from 'react-router';
 
 import type { Doodle } from 'modules/types';
 

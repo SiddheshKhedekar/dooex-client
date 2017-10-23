@@ -1,12 +1,12 @@
 // @flow
 
-import type { Location } from 'react-router-dom';
+import type { Location } from 'react-router';
 
 import type { Doodle as DoodleType } from 'modules/types';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import Doodle from 'components/Doodle';
 

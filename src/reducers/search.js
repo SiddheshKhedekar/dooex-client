@@ -7,7 +7,8 @@ type State = string;
 
 type Action = { type: 'search/UPDATE_KEYWORD', keyword: string } | { type: 'search/RESET_KEYWORD' };
 
-const initialState: State = '';
+const locationURL = new URL(window.location);
+const initialState: State = locationURL.searchParams.get('search') || '';
 
 function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
@@ -35,6 +36,6 @@ function resetKeyword(): Action {
   };
 }
 
-export { updateKeyword, resetKeyword };
+export { UPDATE_KEYWORD, RESET_KEYWORD, updateKeyword, resetKeyword };
 
 export default reducer;

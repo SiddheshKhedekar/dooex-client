@@ -65,6 +65,7 @@ class SearchBar extends Component<Props> {
           className="form-control pull-left"
           type="search"
           placeholder="Search"
+          defaultValue={this.props.keyword}
           onChange={this.updateKeyword}
         />
 
