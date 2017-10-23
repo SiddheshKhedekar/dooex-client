@@ -3,7 +3,7 @@
 class SavedHandler {
   constructor() {
     this.cache = sw.strategies.cacheFirst({
-      cacheName: 'dooex-saved',
+      cacheName: 'saved',
     });
   }
 

@@ -2,7 +2,9 @@
 
 class TunnelHandler {
   constructor() {
-    this.cache = sw.strategies.networkOnly();
+    this.cache = sw.strategies.cacheFirst({
+      cacheName: 'interactive',
+    });
   }
 
   /**

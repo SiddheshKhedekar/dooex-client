@@ -6,8 +6,9 @@ importScripts('/saved-handler.js');
 importScripts('/tunnel-handler.js');
 
 const sw = new WorkboxSW({
-  skipWaiting: true,
+  cacheId: 'dooex',
   clientsClaim: true,
+  skipWaiting: true,
 });
 
 sw.router.registerRoute(
