@@ -18,6 +18,7 @@ sw.router.registerRoute(
 );
 
 sw.router.registerRoute(/static/, sw.strategies.cacheFirst());
+sw.router.registerRoute(/bundle\.js/, sw.strategies.networkOnly());
 
 sw.router.registerRoute(/logos/, new TunnelHandler());
 sw.router.registerRoute(/doodles\/api/, new TunnelHandler());
