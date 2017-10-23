@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from './TopBar.css';
 
@@ -34,15 +34,15 @@ function TopBar() {
 
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link className={styles.action} to="/search">
+          <NavLink className={styles.action} to="/search" activeClassName="active">
             <span className="fa fa-fw fa-search" />
-          </Link>
+          </NavLink>
         </li>
 
         <li className="nav-item">
-          <Link className={styles.action} to="/saved">
+          <NavLink className={styles.action} to="/saved" activeClassName="active">
             <span className="fa fa-fw fa-star" />
-          </Link>
+          </NavLink>
         </li>
 
         {/* last item */}
