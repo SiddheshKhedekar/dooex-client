@@ -23,6 +23,31 @@ type Props = {
 };
 
 function DoodlesContainer(props: Props) {
+  const faces = ['¯\\_(ツ)_/¯', '(·.·)', '(˚Δ˚)', '(·_·)', '(>_<)', '(;-;)', '(≥o≤)', '\\(o_o)/'];
+
+  if (props.doodles.length === 0) {
+    return (
+      <div
+        className="text-center"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '45%',
+
+          fontFamily: 'monospace',
+          opacity: 0.3,
+
+          transform: 'translate(-50%, -50%)',
+          zoom: 2.4,
+        }}
+      >
+        <h1>{faces[Math.floor(Math.random() * faces.length)]}</h1>
+
+        <small>No doodles to see</small>
+      </div>
+    );
+  }
+
   const basepath = props.location.pathname.replace(/\/$/, '');
 
   return (
