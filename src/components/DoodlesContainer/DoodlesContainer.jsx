@@ -11,8 +11,8 @@ import { withRouter } from 'react-router';
 import Doodle from 'components/Doodle';
 
 import { updateDoodle } from 'reducers/doodles';
-import savedFilter from 'filters/savedFilter';
-import searchFilter from 'filters/searchFilter';
+import savedFilter from 'filters/saved-filter';
+import searchFilter from 'filters/search-filter';
 
 type Props = {
   doodles: Array<DoodleType>,
