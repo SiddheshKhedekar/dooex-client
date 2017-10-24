@@ -4,15 +4,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { updateKeyword, resetKeyword } from 'reducers/search';
+import { resetKeyword, updateKeyword } from 'reducers/search';
 
 import styles from './SearchBar.css';
 
 type Props = {
   keyword: string,
 
-  updateKeyword: Function,
   resetKeyword: Function,
+  updateKeyword: Function,
 };
 
 class SearchBar extends Component<Props> {
@@ -21,6 +21,7 @@ class SearchBar extends Component<Props> {
   }
 
   refInput = null;
+
   resetKeyword = () => {
     clearTimeout(this.timeoutId);
 
@@ -84,8 +85,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  updateKeyword,
   resetKeyword,
+  updateKeyword,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

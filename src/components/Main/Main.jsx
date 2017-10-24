@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import DoodlesContainer from 'components/DoodlesContainer';
 
-import { updateBatchSize } from 'reducers/infinite-scroll';
 import { loadDoodles } from 'reducers/doodles';
+import { updateBatchSize } from 'reducers/infinite-scroll';
 
 import styles from './Main.scss';
 
@@ -73,8 +73,8 @@ class Main extends Component<Props> {
 
 function mapStateToProps(state) {
   return {
-    doodlesCount: state.doodles.length,
     batchSize: state.infiniteScrollBatchSize,
+    doodlesCount: state.doodles.length,
   };
 }
 

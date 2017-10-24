@@ -47,6 +47,7 @@ class Doodle extends Component<Props> {
 
     this.props.updateDoodle({
       ...doodle,
+
       isSaved: !doodle.isSaved,
     });
   };

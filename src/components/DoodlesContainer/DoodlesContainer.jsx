@@ -10,9 +10,9 @@ import { withRouter } from 'react-router';
 
 import Doodle from 'components/Doodle';
 
-import { updateDoodle } from 'reducers/doodles';
 import savedFilter from 'filters/saved-filter';
 import searchFilter from 'filters/search-filter';
+import { updateDoodle } from 'reducers/doodles';
 
 type Props = {
   doodles: Array<DoodleType>,

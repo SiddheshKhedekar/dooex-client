@@ -23,6 +23,7 @@ class Tile extends Component<Props, State> {
   componentDidMount() {
     const img = new Image();
     img.src = this.props.src;
+
     img.onload = this.handleLoad;
     img.onerror = this.handleError;
   }
