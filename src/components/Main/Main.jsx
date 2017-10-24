@@ -102,7 +102,7 @@ class Main extends Component<Props> {
 
   renderDoodles() {
     if (this.props.doodles.length === 0) {
-      return <NoDoodles />;
+      return null;
     }
 
     const basepath = this.props.location.pathname.replace(/\/$/, '');
@@ -128,6 +128,7 @@ class Main extends Component<Props> {
       <div key="Main" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
+            <NoDoodles />
             {this.renderDoodles()}
           </div>
         </div>
