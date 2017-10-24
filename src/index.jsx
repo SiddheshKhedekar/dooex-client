@@ -43,8 +43,8 @@ if (module.hot) {
 if (process.env.NODE_ENV !== 'production') {
   const { whyDidYouUpdate } = require('why-did-you-update');
 
-  whyDidYouUpdate(React, {
-    include: /^Doodle$/,
-    // exclude: /^.*$/,
-  });
+  // whyDidYouUpdate(React, {
+  //   include: /^Doodle$/,
+  //   // exclude: /^.*$/,
+  // });
 }

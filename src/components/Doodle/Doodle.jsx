@@ -5,18 +5,15 @@ import type { Doodle as DoodleType } from 'modules/types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Alert from 'components/Alert';
 import SaveButton from 'components/SaveButton';
 import Tile from 'components/Tile';
-
-import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
 
 import styles from './Doodle.css';
 
 type Props = {
   basepath: string,
   doodle: DoodleType,
-  updateDoodle: Function,
+  toggleSave: Function,
 };
 
 class Doodle extends Component<Props> {
@@ -28,28 +25,8 @@ class Doodle extends Component<Props> {
     return true;
   }
 
-  toggleSave = async () => {
-    const { doodle } = this.props;
-
-    try {
-      if (this.props.doodle.isSaved) {
-        await uncacheDoodle(doodle);
-      } else {
-        await cacheDoodle(doodle);
-      }
-    } catch (err) {
-      Alert(`${doodle.isSaved ? 'Unsave' : 'Save'} "${doodle.title}" failed`, 'danger');
-
-      return;
-    }
-
-    Alert(`${doodle.isSaved ? 'Unsaved' : 'Saved'} "${doodle.title}"`, 'success');
-
-    this.props.updateDoodle({
-      ...doodle,
-
-      isSaved: !doodle.isSaved,
-    });
+  toggleSave = () => {
+    this.props.toggleSave(this.props.doodle);
   };
 
   render() {

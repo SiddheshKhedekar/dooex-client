@@ -1,0 +1,13 @@
+.root {
+  composes: global(text-center);
+
+  position: absolute;
+  left: 50%;
+  top: 45%;
+
+  font-family: monospace;
+  opacity: 0.3;
+
+  transform: translate(-50%, -50%);
+  zoom: 2.4;
+}
