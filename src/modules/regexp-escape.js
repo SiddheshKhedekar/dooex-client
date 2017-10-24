@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Escape string for use in regular expression.
  */

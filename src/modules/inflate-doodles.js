@@ -1,4 +1,16 @@
-function inflateDoodles(deflatedDoodles: Array<DeflatedDoodle>, meta: Meta): State {
+// @flow
+
+import type { Doodle, Meta } from 'modules/types';
+
+type DeflatedDoodle = Array<any>;
+
+type DoodlesState = Array<Doodle>;
+
+type MetaState = Meta & {
+  savedDoodleIds: Array<string>,
+};
+
+function inflateDoodles(deflatedDoodles: Array<DeflatedDoodle>, meta: MetaState): DoodlesState {
   const {
     countries, linkTypes, savedDoodleIds, schema, tags, urlPrefixes,
   } = meta;

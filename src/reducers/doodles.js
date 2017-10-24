@@ -6,6 +6,10 @@ import fetchJson from 'modules/fetch-json';
 import inflate from 'modules/inflate-doodles';
 import { fetchMeta } from 'reducers/meta';
 
+type MetaState = Meta & {
+  savedDoodleIds: Array<string>,
+};
+
 // $FlowFixMe
 type State = Array<Doodle>;
 
@@ -20,7 +24,7 @@ const initialState: State = [];
 const FETCH_DOODLES = 'FETCH_DOODLES';
 const UPDATE_DOODLE = 'UPDATE_DOODLE';
 
-function reducer(state: State = initialState, action: Action, metaState: Meta) {
+function reducer(state: State = initialState, action: Action, metaState: MetaState) {
   switch (action.type) {
     case FETCH_DOODLES:
       return inflate(action.doodles, metaState);
