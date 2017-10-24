@@ -1,4 +1,5 @@
 import doodles from 'reducers/doodles';
+import infiniteScroll from 'reducers/infinite-scroll';
 import meta from 'reducers/meta';
 import search from 'reducers/search';
 
@@ -10,10 +11,13 @@ function rootReducer(state = initialState, action) {
 
   const searchState = search(state.search, action);
 
+  const infiniteScrollState = infiniteScroll(state.infiniteScrollBatchSize, action);
+
   const nextState = {
     doodles: doodlesState,
     meta: metaState,
     search: searchState,
+    infiniteScrollBatchSize: infiniteScrollState,
   };
 
   return nextState;

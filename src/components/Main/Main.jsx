@@ -5,24 +5,19 @@ import { connect } from 'react-redux';
 
 import DoodlesContainer from 'components/DoodlesContainer';
 
+import { updateBatchSize } from 'reducers/infinite-scroll';
 import { loadDoodles } from 'reducers/doodles';
 
 import styles from './Main.scss';
 
 type Props = {
+  batchSize: number,
   doodlesCount: number,
   loadDoodles: Function,
+  updateBatchSize: Function,
 };
 
-type State = {
-  sliceSize: number,
-};
-
-class Main extends Component<Props, State> {
-  state = {
-    sliceSize: 10,
-  };
-
+class Main extends Component<Props> {
   componentDidMount() {
     if (this.props.doodlesCount === 0) {
       this.props.loadDoodles();
@@ -58,7 +53,7 @@ class Main extends Component<Props, State> {
       this.shouldLoadNext = true;
     }, 600);
 
-    this.setState({ sliceSize: this.state.sliceSize + 10 });
+    this.props.updateBatchSize();
   };
 
   shouldLoadNext = true;
@@ -68,7 +63,7 @@ class Main extends Component<Props, State> {
       <div key="Main" className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
-            <DoodlesContainer sliceSize={this.state.sliceSize} />
+            <DoodlesContainer sliceSize={this.props.batchSize} />
           </div>
         </div>
       </div>
@@ -79,11 +74,13 @@ class Main extends Component<Props, State> {
 function mapStateToProps(state) {
   return {
     doodlesCount: state.doodles.length,
+    batchSize: state.infiniteScrollBatchSize,
   };
 }
 
 const mapDispatchToProps = {
   loadDoodles,
+  updateBatchSize,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
