@@ -10,13 +10,13 @@ type Props = {
 };
 
 class SaveButton extends Component<Props> {
-  refSpan: HTMLSpanElement;
-
   handleClick = () => {
     this.refSpan.className = styles.isSaving;
 
     this.props.onClick();
   };
+
+  refSpan: HTMLSpanElement;
 
   render() {
     return (

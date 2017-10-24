@@ -34,6 +34,16 @@ class FullScreen extends Component<Props> {
     });
   };
 
+  renderDoodle() {
+    switch (this.props.doodle.type) {
+      case 'interactive':
+        return this.renderIframe();
+
+      default:
+        return this.renderImage();
+    }
+  }
+
   renderIframe() {
     const { doodle } = this.props;
 
@@ -58,16 +68,6 @@ class FullScreen extends Component<Props> {
         alt={doodle.title}
       />
     );
-  }
-
-  renderDoodle() {
-    switch (this.props.doodle.type) {
-      case 'interactive':
-        return this.renderIframe();
-
-      default:
-        return this.renderImage();
-    }
   }
 
   render() {
