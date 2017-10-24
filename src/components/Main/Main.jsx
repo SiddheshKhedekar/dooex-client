@@ -38,6 +38,14 @@ class Main extends Component<Props> {
     window.addEventListener('scroll', this.handleScroll);
   }
 
+  shouldComponentUpdate(nextProps: Props) {
+    if (nextProps.doodles.length === this.props.doodles.length) {
+      return false;
+    }
+
+    return true;
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
