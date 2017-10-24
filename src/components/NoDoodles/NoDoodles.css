@@ -7,6 +7,7 @@
 
   font-family: monospace;
   opacity: 0.3;
+  white-space: nowrap;
 
   transform: translate(-50%, -50%);
   zoom: 2.4;
