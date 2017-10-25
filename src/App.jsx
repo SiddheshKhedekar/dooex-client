@@ -3,9 +3,19 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import HomePage from 'pages/Home';
-import SavedPage from 'pages/Saved';
-import SearchPage from 'pages/Search';
+import AsyncComponent from 'modules/AsyncComponent.jsx';
+
+function HomePage() {
+  return <AsyncComponent load={import(/* webpackChunkName: "HomePage" */ 'pages/Home')} />;
+}
+
+function SavedPage() {
+  return <AsyncComponent load={import(/* webpackChunkName: "SavedPage" */ 'pages/Saved')} />;
+}
+
+function SearchPage() {
+  return <AsyncComponent load={import(/* webpackChunkName: "SearchPage" */ 'pages/Search')} />;
+}
 
 function App() {
   return (
