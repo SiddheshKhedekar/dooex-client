@@ -1,7 +1,5 @@
-/* global sw */
-
 class TunnelHandler {
-  constructor() {
+  constructor(sw) {
     this.cache = sw.strategies.cacheFirst({
       cacheName: 'interactive',
     });
@@ -22,3 +20,5 @@ class TunnelHandler {
     return this.cache.handle(props);
   }
 }
+
+export default TunnelHandler;
