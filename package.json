@@ -58,7 +58,7 @@
   "proxy": "http://localhost:8000/",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "npm run sw:build && node scripts/build.js",
     "sw:build": "NODE_ENV=production webpack -p --config config/webpack.config.sw.js",
     "sw:start": "NODE_ENV=development webpack -w -d --config config/webpack.config.sw.js",
     "test": "node scripts/test.js --env=jsdom"
