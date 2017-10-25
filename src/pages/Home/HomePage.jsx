@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Route } from 'react-router';
+import Route from 'react-router/Route';
 
 import InfoModal from 'components/InfoModal';
 import FullScreen from 'components/FullScreen';

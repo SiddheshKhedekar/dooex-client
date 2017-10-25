@@ -1,7 +1,8 @@
 // @flow
 
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
+import NavLink from 'react-router-dom/NavLink';
 
 import styles from './TopBar.css';
 

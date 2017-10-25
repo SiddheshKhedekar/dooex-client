@@ -1,7 +1,8 @@
 // @flow
 
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import Route from 'react-router/Route';
+import Switch from 'react-router/Switch';
 
 import AsyncComponent from 'modules/AsyncComponent.jsx';
 

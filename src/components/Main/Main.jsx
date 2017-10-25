@@ -6,7 +6,7 @@ import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import withRouter from 'react-router/withRouter';
 
 import Alert from 'components/Alert';
 import Doodle from 'components/Doodle';
