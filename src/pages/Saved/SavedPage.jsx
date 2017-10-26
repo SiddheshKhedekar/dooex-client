@@ -1,25 +1,12 @@
 // @flow
 
 import React from 'react';
-import Route from 'react-router/Route';
 
-import InfoModal from 'components/InfoModal';
-import FullScreen from 'components/FullScreen';
-import Main from 'components/Main';
 import TopBar from 'components/TopBar';
+import MainPage from 'pages/Main';
 
-type Props = {};
-
-function SavedPage(props: Props) {
-  return [
-    <Route key="InfoModal" path="/saved/info/:doodleId" component={InfoModal} />,
-
-    <Route key="FullScreen" path="/saved/fullscreen/:doodleId" component={FullScreen} />,
-
-    <TopBar key="TopBar" />,
-
-    <Main key="Main" />,
-  ];
+function SavedPage() {
+  return [<MainPage basepath="/saved" key="MainPage" />, <TopBar key="TopBar" />];
 }
 
 export default SavedPage;

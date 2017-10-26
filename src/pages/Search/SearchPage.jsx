@@ -1,25 +1,12 @@
 // @flow
 
 import React from 'react';
-import Route from 'react-router/Route';
 
-import InfoModal from 'components/InfoModal';
-import FullScreen from 'components/FullScreen';
-import Main from 'components/Main';
 import SearchBar from 'components/SearchBar';
+import MainPage from 'pages/Main';
 
-type Props = {};
-
-function SearchPage(props: Props) {
-  return [
-    <Route key="InfoModal" path="/search/info/:doodleId" component={InfoModal} />,
-
-    <Route key="FullScreen" path="/search/fullscreen/:doodleId" component={FullScreen} />,
-
-    <SearchBar key="SearchBar" />,
-
-    <Main key="Main" />,
-  ];
+function SearchPage() {
+  return [<MainPage basepath="/search" key="MainPage" />, <SearchBar key="SearchBar" />];
 }
 
 export default SearchPage;
