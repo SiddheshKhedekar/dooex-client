@@ -63,7 +63,7 @@ class SearchBar extends Component<Props> {
         <input
           autoFocus
           ref={input => (this.refInput = input)}
-          className="form-control pull-left"
+          className="form-control float-left"
           type="search"
           placeholder="Search"
           defaultValue={this.props.keyword}

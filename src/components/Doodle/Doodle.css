@@ -22,7 +22,7 @@
 }
 
 .actions {
-  composes: global(btn-group) global(btn-group-sm) global(pull-right);
+  composes: global(btn-group) global(btn-group-sm) global(float-right);
 }
 
 .actions > * {
