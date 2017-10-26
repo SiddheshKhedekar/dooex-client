@@ -317,13 +317,6 @@ module.exports = {
         return context && context.includes('node_modules');
       },
     }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      async: 'common.js',
-      minChunks(_, count) {
-        return count >= 2;
-      },
-    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
