@@ -3,28 +3,10 @@
 import React from 'react';
 import Route from 'react-router/Route';
 
+import FullScreen from 'components/FullScreen';
+import InfoModal from 'components/InfoModal';
 import Main from 'components/Main';
 import TopBar from 'components/TopBar';
-
-import AsyncComponent from 'modules/AsyncComponent.jsx';
-
-function InfoModal(props) {
-  return (
-    <AsyncComponent
-      props={props}
-      load={import(/* webpackChunkName: "InfoModal" */ 'components/InfoModal')}
-    />
-  );
-}
-
-function FullScreen(props) {
-  return (
-    <AsyncComponent
-      props={props}
-      load={import(/* webpackChunkName: "FullScreen" */ 'components/FullScreen')}
-    />
-  );
-}
 
 type Props = {
   basepath: string,

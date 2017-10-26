@@ -5,16 +5,8 @@ import Route from 'react-router/Route';
 import Switch from 'react-router/Switch';
 
 import HomePage from 'pages/Home';
-
-import AsyncComponent from 'modules/AsyncComponent.jsx';
-
-function SavedPage() {
-  return <AsyncComponent load={import(/* webpackChunkName: "SavedPage" */ 'pages/Saved')} />;
-}
-
-function SearchPage() {
-  return <AsyncComponent load={import(/* webpackChunkName: "SearchPage" */ 'pages/Search')} />;
-}
+import SavedPage from 'pages/Saved';
+import SearchPage from 'pages/Search';
 
 function App() {
   return (
