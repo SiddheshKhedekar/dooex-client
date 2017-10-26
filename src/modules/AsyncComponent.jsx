@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 type Props = {
   load: Promise<*>,
+  props: Object,
 };
 
 type State = {
@@ -11,6 +12,10 @@ type State = {
 };
 
 class AsyncComponent extends Component<Props, State> {
+  static defaultProps = {
+    props: {},
+  };
+
   state = {
     comp: null,
   };
@@ -38,7 +43,9 @@ class AsyncComponent extends Component<Props, State> {
       return null;
     }
 
-    return <this.state.comp />;
+    const compProps = this.props.props;
+
+    return <this.state.comp {...compProps} />;
   }
 }
 
