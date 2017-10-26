@@ -6,7 +6,12 @@ import TopBar from 'components/TopBar';
 import MainPage from 'pages/Main';
 
 function SavedPage() {
-  return [<MainPage basepath="/saved" key="MainPage" />, <TopBar key="TopBar" />];
+  return (
+    <div>
+      <MainPage basepath="/saved" key="MainPage" />
+      <TopBar key="TopBar" />
+    </div>
+  );
 }
 
 export default SavedPage;

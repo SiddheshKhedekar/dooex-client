@@ -6,7 +6,12 @@ import SearchBar from 'components/SearchBar';
 import MainPage from 'pages/Main';
 
 function SearchPage() {
-  return [<MainPage basepath="/search" key="MainPage" />, <SearchBar key="SearchBar" />];
+  return (
+    <div>
+      <MainPage basepath="/search" key="MainPage" />
+      <SearchBar key="SearchBar" />
+    </div>
+  );
 }
 
 export default SearchPage;

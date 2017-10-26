@@ -33,15 +33,17 @@ type Props = {
 function MainPage(props: Props) {
   const { basepath } = props;
 
-  return [
-    <Route key="InfoModal" path={`${basepath}info/:doodleId`} component={InfoModal} />,
+  return (
+    <div>
+      <Route key="InfoModal" path={`${basepath}info/:doodleId`} component={InfoModal} />
 
-    <Route key="FullScreen" path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />,
+      <Route key="FullScreen" path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
 
-    <TopBar key="TopBar" />,
+      <TopBar key="TopBar" />
 
-    <Main key="Main" />,
-  ];
+      <Main key="Main" />
+    </div>
+  );
 }
 
 export default MainPage;
