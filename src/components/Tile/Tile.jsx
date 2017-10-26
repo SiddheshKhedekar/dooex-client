@@ -16,6 +16,8 @@ type State = {
 };
 
 class Tile extends Component<Props, State> {
+  static maxRetries = 5;
+
   state = {
     ready: false,
   };
@@ -29,16 +31,22 @@ class Tile extends Component<Props, State> {
   }
 
   handleError = (e: Event) => {
-    // $FlowFixMe
-    const img = e.path[0];
-
     // bail
     if (navigator.onLine === false) {
       return;
     }
 
+    if (this.retries > Tile.maxRetries) {
+      return;
+    }
+
+    // $FlowFixMe
+    const img = e.path[0];
+
     // $FlowFixMe
     img.src = `${this.props.src}?${+new Date()}`;
+
+    this.retries += 1;
   };
 
   handleLoad = () => {
@@ -46,6 +54,8 @@ class Tile extends Component<Props, State> {
   };
 
   refImg = null;
+
+  retries = 0;
 
   render() {
     if (this.state.ready === false) {
