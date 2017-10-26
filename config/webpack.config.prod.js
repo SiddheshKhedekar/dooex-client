@@ -302,8 +302,25 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    // }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'static/js/vendor.js',
+      minChunks(module) {
+        const context = module.context;
+
+        return context && context.includes('node_modules');
+      },
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      async: 'common.js',
+      minChunks(_, count) {
+        return count >= 2;
+      },
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
