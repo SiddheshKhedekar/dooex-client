@@ -8,15 +8,21 @@ import TopBar from 'components/TopBar';
 
 import AsyncComponent from 'modules/AsyncComponent.jsx';
 
-function InfoModal() {
+function InfoModal(props) {
   return (
-    <AsyncComponent load={import(/* webpackChunkName: "InfoModal" */ 'components/InfoModal')} />
+    <AsyncComponent
+      props={props}
+      load={import(/* webpackChunkName: "InfoModal" */ 'components/InfoModal')}
+    />
   );
 }
 
-function FullScreen() {
+function FullScreen(props) {
   return (
-    <AsyncComponent load={import(/* webpackChunkName: "FullScreen" */ 'components/FullScreen')} />
+    <AsyncComponent
+      props={props}
+      load={import(/* webpackChunkName: "FullScreen" */ 'components/FullScreen')}
+    />
   );
 }
 
