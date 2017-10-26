@@ -4,11 +4,9 @@ import React from 'react';
 import Route from 'react-router/Route';
 import Switch from 'react-router/Switch';
 
-import AsyncComponent from 'modules/AsyncComponent.jsx';
+import HomePage from 'pages/Home';
 
-function HomePage() {
-  return <AsyncComponent load={import(/* webpackChunkName: "HomePage" */ 'pages/Home')} />;
-}
+import AsyncComponent from 'modules/AsyncComponent.jsx';
 
 function SavedPage() {
   return <AsyncComponent load={import(/* webpackChunkName: "SavedPage" */ 'pages/Saved')} />;
