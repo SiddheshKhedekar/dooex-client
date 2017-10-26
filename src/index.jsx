@@ -18,13 +18,13 @@ import registerServiceWorker from './registerServiceWorker';
 
 function render(Component) {
   ReactDOM.render(
-    <Provider store={store}>
-      <Router history={history}>
-        <AppContainer>
+    <AppContainer>
+      <Provider store={store}>
+        <Router history={history}>
           <Route component={Component} />
-        </AppContainer>
-      </Router>
-    </Provider>,
+        </Router>
+      </Provider>
+    </AppContainer>,
     document.getElementById('root'),
   );
 }
