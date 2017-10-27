@@ -1,28 +1,56 @@
 // @flow
 
+import type { Doodle } from 'modules/types';
+
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import Alert from 'components/Alert';
+
+import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
+import { updateDoodle } from 'reducers/doodles';
 
 import styles from './SaveButton.css';
 
 type Props = {
-  isSaved: boolean,
-  onClick: Function,
+  doodle: Doodle,
+  updateDoodle: Function,
 };
 
 class SaveButton extends Component<Props> {
-  handleClick = () => {
+  refSpan: HTMLSpanElement;
+
+  toggleSave = async () => {
     this.refSpan.className = styles.isSaving;
 
-    this.props.onClick();
-  };
+    const { doodle } = this.props;
 
-  refSpan: HTMLSpanElement;
+    try {
+      if (doodle.doodle) {
+        await uncacheDoodle(doodle);
+      } else {
+        await cacheDoodle(doodle);
+      }
+
+      Alert(`${doodle.isSaved ? 'Unsaved' : 'Saved'} "${doodle.title}"`, 'success');
+
+      this.props.updateDoodle({
+        ...doodle,
+
+        isSaved: !doodle.isSaved,
+      });
+    } catch (err) {
+      Alert(`${doodle.isSaved ? 'Unsave' : 'Save'} "${doodle.title}" failed`, 'danger');
+
+      this.refSpan.className = this.props.doodle.isSaved ? styles.saved : styles.notSaved;
+    }
+  };
 
   render() {
     return (
-      <button className={styles.root} onClick={this.handleClick}>
+      <button className={styles.root} onClick={this.toggleSave}>
         <span
-          className={this.props.isSaved ? styles.saved : styles.notSaved}
+          className={this.props.doodle.isSaved ? styles.saved : styles.notSaved}
           ref={span => (this.refSpan = span)}
         />
       </button>
@@ -30,4 +58,8 @@ class SaveButton extends Component<Props> {
   }
 }
 
-export default SaveButton;
+const mapDispatchToProps = {
+  updateDoodle,
+};
+
+export default connect(null, mapDispatchToProps)(SaveButton);

@@ -14,7 +14,6 @@ import styles from './Doodle.css';
 type Props = {
   basepath: string,
   doodle: DoodleType,
-  toggleSave: Function,
 };
 
 class Doodle extends Component<Props> {
@@ -25,10 +24,6 @@ class Doodle extends Component<Props> {
 
     return true;
   }
-
-  toggleSave = () => {
-    this.props.toggleSave(this.props.doodle);
-  };
 
   render() {
     const { doodle } = this.props;
@@ -41,7 +36,7 @@ class Doodle extends Component<Props> {
               <span className="fa fa-fw fa-info" />
             </Link>
 
-            <SaveButton onClick={this.toggleSave} isSaved={doodle.isSaved} />
+            <SaveButton doodle={doodle} />
           </div>
 
           <h5 className={styles.title}>{doodle.title}</h5>

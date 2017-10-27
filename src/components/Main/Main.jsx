@@ -8,15 +8,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withRouter from 'react-router/withRouter';
 
-import Alert from 'components/Alert';
 import Doodle from 'components/Doodle';
 import NoDoodles from 'components/NoDoodles';
 
 import savedFilter from 'filters/saved-filter';
 import searchFilter from 'filters/search-filter';
-import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
 import detectPassive from 'modules/detect-passive';
-import { loadDoodles, updateDoodle } from 'reducers/doodles';
+import { loadDoodles } from 'reducers/doodles';
 import { updateBatchSize } from 'reducers/infinite-scroll';
 
 import styles from './Main.scss';
@@ -27,7 +25,6 @@ type Props = {
   location: Location,
   pathname: string,
   updateBatchSize: Function,
-  updateDoodle: Function,
 };
 
 const isPassive = detectPassive();
@@ -72,28 +69,6 @@ class Main extends Component<Props> {
   };
 
   shouldLoadNext = true;
-
-  toggleSave = async (doodle: DoodleType) => {
-    try {
-      if (doodle.isSaved) {
-        await uncacheDoodle(doodle);
-      } else {
-        await cacheDoodle(doodle);
-      }
-    } catch (err) {
-      Alert(`${doodle.isSaved ? 'Unsave' : 'Save'} "${doodle.title}" failed`, 'danger');
-
-      return;
-    }
-
-    Alert(`${doodle.isSaved ? 'Unsaved' : 'Saved'} "${doodle.title}"`, 'success');
-
-    this.props.updateDoodle({
-      ...doodle,
-
-      isSaved: !doodle.isSaved,
-    });
-  };
 
   renderDoodles() {
     if (this.props.doodles.length === 0) {
@@ -159,7 +134,6 @@ function mapStateToProps(state, ownProps: Props) {
 
 const mapDispatchToProps = {
   loadDoodles,
-  updateDoodle,
   updateBatchSize,
 };
 
