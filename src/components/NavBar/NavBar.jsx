@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'react-router-dom/Link';
 import NavLink from 'react-router-dom/NavLink';
 
-import styles from './TopBar.css';
+import styles from './NavBar.css';
 
 function shareApp() {
   navigator.share({
@@ -26,7 +26,7 @@ function ShareButton() {
   );
 }
 
-function TopBar() {
+function NavBar() {
   return (
     <nav className={styles.root}>
       <Link className="navbar-brand" to="/">
@@ -55,4 +55,4 @@ function TopBar() {
   );
 }
 
-export default TopBar;
+export default NavBar;

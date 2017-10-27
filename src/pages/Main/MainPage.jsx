@@ -6,7 +6,7 @@ import Route from 'react-router/Route';
 import FullScreen from 'components/FullScreen';
 import InfoModal from 'components/InfoModal';
 import Main from 'components/Main';
-import TopBar from 'components/TopBar';
+import NavBar from 'components/NavBar';
 
 type Props = {
   basepath: string,
@@ -25,7 +25,7 @@ function MainPage(props: Props) {
 
       <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
 
-      <TopBar />
+      <NavBar />
 
       <Main />
     </div>

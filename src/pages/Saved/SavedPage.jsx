@@ -2,14 +2,14 @@
 
 import React from 'react';
 
-import TopBar from 'components/TopBar';
+import NavBar from 'components/NavBar';
 import MainPage from 'pages/Main';
 
 function SavedPage() {
   return (
     <div>
       <MainPage basepath="/saved" />
-      <TopBar />
+      <NavBar />
     </div>
   );
 }
