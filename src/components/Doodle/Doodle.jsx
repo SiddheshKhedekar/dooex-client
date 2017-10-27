@@ -43,7 +43,7 @@ class Doodle extends Component<Props> {
             <SaveButton onClick={this.toggleSave} isSaved={doodle.isSaved} />
           </div>
 
-          <h4 className={styles.title}>{doodle.title}</h4>
+          <h5 className={styles.title}>{doodle.title}</h5>
         </div>
 
         <Link to={`${this.props.basepath}/fullscreen/${doodle.id}`} className={styles.tileLink}>

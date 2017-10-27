@@ -2,15 +2,22 @@
   composes: global(navbar) global(navbar-light) global(navbar-expand) global(fixed-top);
 
   background-color: white;
-  box-shadow: 0 0 2px #eee;
+  box-shadow: 0 2px 4px #ddd;
   justify-content: space-between;
+  padding: 0.24rem 0.5rem 0.24rem 0.2rem;
+}
+
+.back {
+  composes: global(navbar-brand);
+
+  margin-right: 0.4rem;
 }
 
 .reset {
   composes: global(btn);
 
   position: absolute;
-  right: 20px;
+  right: 10px;
 
   border-radius: 100%;
   width: 2.4rem;

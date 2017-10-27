@@ -103,7 +103,7 @@ class Main extends Component<Props> {
     const basepath = this.props.location.pathname.replace(/\/$/, '');
 
     return (
-      <div className="col-12">
+      <div>
         {this.props.doodles.map(doodle => (
           <Doodle
             key={doodle.id}
@@ -121,8 +121,8 @@ class Main extends Component<Props> {
   render() {
     return (
       <div className="container-fluid">
-        <div className="row justify-content-center">
-          <div id="row" className={styles.row}>
+        <div className={styles.row}>
+          <div className={styles.foo}>
             <NoDoodles doodlesCount={this.props.doodles.length} />
             {this.renderDoodles()}
           </div>

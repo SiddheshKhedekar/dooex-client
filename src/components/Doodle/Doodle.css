@@ -23,6 +23,8 @@
 
 .actions {
   composes: global(btn-group) global(btn-group-sm) global(float-right);
+
+  padding-right: 0.2rem;
 }
 
 .actions > * {
