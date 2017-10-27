@@ -8,8 +8,8 @@ import MainPage from 'pages/Main';
 function SearchPage() {
   return (
     <div>
-      <MainPage basepath="/search" />
       <SearchBar />
+      <MainPage basepath="/search" />
     </div>
   );
 }

@@ -25,8 +25,6 @@ function MainPage(props: Props) {
 
       <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
 
-      <NavBar />
-
       <Main />
     </div>
   );

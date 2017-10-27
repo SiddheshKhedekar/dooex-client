@@ -8,8 +8,8 @@ import MainPage from 'pages/Main';
 function SavedPage() {
   return (
     <div>
-      <MainPage basepath="/saved" />
       <NavBar />
+      <MainPage basepath="/saved" />
     </div>
   );
 }
