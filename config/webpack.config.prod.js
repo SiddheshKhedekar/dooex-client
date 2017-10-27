@@ -7,10 +7,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -55,7 +57,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [paths.appIndexJs],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -93,6 +95,8 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -271,32 +275,26 @@ module.exports = {
     }),
     // Generate a service worker script that will precache, and keep up to date,
     // the HTML & assets that are part of the Webpack build.
-    new SWPrecacheWebpackPlugin({
-      // By default, a cache-busting query parameter is appended to requests
-      // used to populate the caches, to ensure the responses are fresh.
-      // If a URL is already hashed by Webpack, then there is no concern
-      // about it being stale, and the cache-busting can be skipped.
+    new WorkboxWebpackPlugin({
+      swSrc: path.resolve(paths.appPublic, 'sw.js'),
+      swDest: path.resolve(paths.appBuild, 'sw.js'),
+
+      globDirectory: paths.appBuild,
+      globPatterns: ['**/*'],
+      globIgnores: [
+        '**/*.map',
+        'asset-manifest.json',
+        'manifest.json',
+        'sw.js'
+      ],
+
       dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      logger(message) {
-        if (message.indexOf('Total precache size is') === 0) {
-          // This message occurs for every build and is a bit too noisy.
-          return;
-        }
-        if (message.indexOf('Skipping static resource') === 0) {
-          // This message obscures real errors so we ignore it.
-          // https://github.com/facebookincubator/create-react-app/issues/2612
-          return;
-        }
-        console.log(message);
-      },
+
       minify: true,
-      // For unknown URLs, fallback to the index page
+
       navigateFallback: publicUrl + '/index.html',
-      // Ignores URLs starting from /__ (useful for Firebase):
-      // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
       navigateFallbackWhitelist: [/^(?!\/__).*/],
-      // Don't precache sourcemaps (they're large) and build asset manifest:
+
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
     }),
     // Moment.js is an extremely popular library that bundles large locale files
@@ -305,6 +303,27 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'static/js/vendor.js',
+      minChunks(module) {
+        const context = module.context;
+
+        return context && context.includes('node_modules');
+      },
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      async: 'common.js',
+      minChunks(_, count) {
+        return count >= 2;
+      },
+    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

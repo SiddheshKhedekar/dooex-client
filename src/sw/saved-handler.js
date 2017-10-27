@@ -1,7 +1,5 @@
-/* global sw */
-
 class SavedHandler {
-  constructor() {
+  constructor(sw) {
     this.cache = sw.strategies.cacheFirst({
       cacheName: 'saved',
     });
@@ -23,3 +21,5 @@ class SavedHandler {
     return this.cache.handle(props);
   }
 }
+
+export default SavedHandler;

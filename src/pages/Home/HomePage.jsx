@@ -1,25 +1,17 @@
 // @flow
 
 import React from 'react';
-import { Route } from 'react-router';
 
-import InfoModal from 'components/InfoModal';
-import FullScreen from 'components/FullScreen';
-import Main from 'components/Main';
 import TopBar from 'components/TopBar';
+import MainPage from 'pages/Main';
 
-type Props = {};
-
-function HomePage(props: Props) {
-  return [
-    <Route key="InfoModal" path="/info/:doodleId" component={InfoModal} />,
-
-    <Route key="FullScreen" path="/fullscreen/:doodleId" component={FullScreen} />,
-
-    <TopBar key="TopBar" />,
-
-    <Main key="Main" />,
-  ];
+function HomePage() {
+  return (
+    <div>
+      <MainPage basepath="/" key="MainPage" />
+      <TopBar key="TopBar" />
+    </div>
+  );
 }
 
 export default HomePage;

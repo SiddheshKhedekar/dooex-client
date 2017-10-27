@@ -1,11 +1,20 @@
 // @flow
 
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import Route from 'react-router/Route';
+import Switch from 'react-router/Switch';
 
 import HomePage from 'pages/Home';
-import SavedPage from 'pages/Saved';
-import SearchPage from 'pages/Search';
+
+import AsyncComponent from 'modules/AsyncComponent.jsx';
+
+function SavedPage() {
+  return <AsyncComponent load={import(/* webpackChunkName: "SavedPage" */ 'pages/Saved')} />;
+}
+
+function SearchPage() {
+  return <AsyncComponent load={import(/* webpackChunkName: "SearchPage" */ 'pages/Search')} />;
+}
 
 function App() {
   return (

@@ -3,7 +3,7 @@
 import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 
 import SaveButton from 'components/SaveButton';
 import Tile from 'components/Tile';

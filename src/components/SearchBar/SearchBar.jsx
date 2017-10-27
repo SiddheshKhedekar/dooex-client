@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 
 import { resetKeyword, updateKeyword } from 'reducers/search';
 
@@ -63,7 +63,7 @@ class SearchBar extends Component<Props> {
         <input
           autoFocus
           ref={input => (this.refInput = input)}
-          className="form-control pull-left"
+          className="form-control float-left"
           type="search"
           placeholder="Search"
           defaultValue={this.props.keyword}

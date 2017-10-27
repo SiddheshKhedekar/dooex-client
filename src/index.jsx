@@ -3,7 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import Router from 'react-router/Router';
+import Route from 'react-router/Route';
 
 import { AppContainer } from 'react-hot-loader';
 
