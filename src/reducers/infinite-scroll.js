@@ -9,7 +9,7 @@ type Action =
     }
   | { type: 'RESET_BATCH_SIZE' };
 
-const step = 10;
+const step = 5;
 
 const initialState: State = step;
 
