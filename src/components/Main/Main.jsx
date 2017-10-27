@@ -15,6 +15,7 @@ import NoDoodles from 'components/NoDoodles';
 import savedFilter from 'filters/saved-filter';
 import searchFilter from 'filters/search-filter';
 import { cacheDoodle, uncacheDoodle } from 'modules/cache-doodles';
+import detectPassive from 'modules/detect-passive';
 import { loadDoodles, updateDoodle } from 'reducers/doodles';
 import { updateBatchSize } from 'reducers/infinite-scroll';
 
@@ -29,13 +30,15 @@ type Props = {
   updateDoodle: Function,
 };
 
+const isPassive = detectPassive();
+
 class Main extends Component<Props> {
   componentDidMount() {
     if (this.props.doodles.length === 0) {
       this.props.loadDoodles();
     }
 
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll, isPassive && { passive: true });
   }
 
   componentWillUnmount() {
