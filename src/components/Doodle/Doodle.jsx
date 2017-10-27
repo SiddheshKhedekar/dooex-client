@@ -5,6 +5,7 @@ import type { Doodle as DoodleType } from 'modules/types';
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 
+import OnlineLink from 'components/OnlineLink';
 import SaveButton from 'components/SaveButton';
 import Tile from 'components/Tile';
 
@@ -46,9 +47,12 @@ class Doodle extends Component<Props> {
           <h5 className={styles.title}>{doodle.title}</h5>
         </div>
 
-        <Link to={`${this.props.basepath}/fullscreen/${doodle.id}`} className={styles.tileLink}>
+        <OnlineLink
+          to={`${this.props.basepath}/fullscreen/${doodle.id}`}
+          className={styles.tileLink}
+        >
           <Tile src={doodle.url} title={doodle.title} />
-        </Link>
+        </OnlineLink>
       </div>
     );
   }

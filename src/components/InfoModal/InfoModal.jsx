@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import InfoTable from 'components/InfoTable';
+import OnlineLink from 'components/OnlineLink';
 
 import styles from './InfoModal.css';
 
@@ -49,11 +50,11 @@ class InfoModal extends Component<Props> {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">
-                <a href={`https://www.google.com/doodles/${doodle.name}`} target="_blank">
+                <OnlineLink to={`https://www.google.com/doodles/${doodle.name}`} target="_blank">
                   {doodle.title}
 
                   <small className={styles.externalLink} />
-                </a>
+                </OnlineLink>
               </h5>
 
               <button className="close" onClick={this.close}>
