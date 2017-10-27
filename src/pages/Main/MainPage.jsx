@@ -12,8 +12,12 @@ type Props = {
   basepath: string,
 };
 
+function withTrailingSlash(s: string) {
+  return s.endsWith('/') ? s : `${s}/`;
+}
+
 function MainPage(props: Props) {
-  const { basepath } = props;
+  const basepath = withTrailingSlash(props.basepath);
 
   return (
     <div>

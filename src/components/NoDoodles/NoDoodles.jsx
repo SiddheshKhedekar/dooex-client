@@ -6,33 +6,48 @@ import withRouter from 'react-router/withRouter';
 
 import styles from './NoDoodles.css';
 
-function NoDoodles({ shouldRender }: { shouldRender: boolean }) {
-  if (shouldRender === false) {
-    return null;
+type Props = {
+  shouldRender: boolean,
+};
+
+class NoDoodles extends Component<Props> {
+  faces = ['(;-;)', '(·_·)', '(·.·)', '(˚Δ˚)', '(>_<)', '(≥o≤)', '(T_T)', '\\(o_o)/', '¯\\_(ツ)_/¯'];
+
+  faceIdx = this.randomFaceIdx();
+
+  randomFaceIdx() {
+    return Math.floor(Math.random() * this.faces.length);
   }
 
-  const faces = ['¯\\_(ツ)_/¯', '(·.·)', '(˚Δ˚)', '(·_·)', '(>_<)', '(;-;)', '(≥o≤)', '\\(o_o)/'];
+  render() {
+    if (this.props.shouldRender === false) {
+      this.faceIdx = this.randomFaceIdx();
 
-  return (
-    <div className={styles.root}>
-      <h1>{faces[Math.floor(Math.random() * faces.length)]}</h1>
+      return null;
+    }
 
-      <small>No doodles to see</small>
-    </div>
-  );
+    return (
+      <div className={styles.root}>
+        <h1>{this.faces[this.faceIdx]}</h1>
+
+        <small>No doodles to see</small>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state, ownProps) {
-  const { doodles, search } = state;
+  const { search: searchKeyword } = state;
   const { pathname } = ownProps.location;
+  const { doodlesCount } = ownProps;
 
   let shouldRender = false;
 
-  if (pathname.startsWith('/search') && search.length > 0) {
+  if (pathname.startsWith('/search') && searchKeyword.length > 0 && doodlesCount === 0) {
     shouldRender = true;
   }
 
-  if (pathname.startsWith('/saved') && doodles.length > 0) {
+  if (pathname.startsWith('/saved') && doodlesCount === 0) {
     shouldRender = true;
   }
 
