@@ -120,7 +120,7 @@ class Main extends Component<Props> {
 
   render() {
     return (
-      <div key="Main" className="container-fluid">
+      <div className="container-fluid">
         <div className="row justify-content-center">
           <div id="row" className={styles.row}>
             <NoDoodles doodlesCount={this.props.doodles.length} />

@@ -21,13 +21,13 @@ function MainPage(props: Props) {
 
   return (
     <div>
-      <Route key="InfoModal" path={`${basepath}info/:doodleId`} component={InfoModal} />
+      <Route path={`${basepath}info/:doodleId`} component={InfoModal} />
 
-      <Route key="FullScreen" path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
+      <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
 
-      <TopBar key="TopBar" />
+      <TopBar />
 
-      <Main key="Main" />
+      <Main />
     </div>
   );
 }

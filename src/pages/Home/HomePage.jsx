@@ -8,8 +8,8 @@ import MainPage from 'pages/Main';
 function HomePage() {
   return (
     <div>
-      <MainPage basepath="/" key="MainPage" />
-      <TopBar key="TopBar" />
+      <MainPage basepath="/" />
+      <TopBar />
     </div>
   );
 }
