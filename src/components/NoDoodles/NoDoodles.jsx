@@ -23,16 +23,17 @@ function NoDoodles({ shouldRender }: { shouldRender: boolean }) {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { doodles, search } = state;
+  const { search: searchKeyword } = state;
   const { pathname } = ownProps.location;
+  const { doodlesCount } = ownProps;
 
   let shouldRender = false;
 
-  if (pathname.startsWith('/search') && search.length > 0) {
+  if (pathname.startsWith('/search') && searchKeyword.length > 0 && doodlesCount === 0) {
     shouldRender = true;
   }
 
-  if (pathname.startsWith('/saved') && doodles.length > 0) {
+  if (pathname.startsWith('/saved') && doodlesCount === 0) {
     shouldRender = true;
   }
 
