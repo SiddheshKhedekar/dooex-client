@@ -32,4 +32,6 @@ sw.router.registerRoute(/saved/, new SavedHandler(sw));
   sw.router.registerRoute(url, sw.strategies.cacheFirst());
 });
 
+sw.precache(['/doodles/meta', '/doodles/all']);
+
 sw.precache([]);
