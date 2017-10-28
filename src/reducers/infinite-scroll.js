@@ -1,13 +1,12 @@
 // @flow
 
+import type { Dispatch } from 'modules/types';
+
+import { fetchDoodlesSlice } from 'reducers/doodles';
+
 type State = number;
 
-type Action =
-  | {
-      type: 'UPDATE_BATCH_SIZE',
-      batchSize: State,
-    }
-  | { type: 'RESET_BATCH_SIZE' };
+type Action = { type: 'UPDATE_BATCH_SIZE' } | { type: 'RESET_BATCH_SIZE' };
 
 const step = 5;
 
@@ -35,13 +34,22 @@ function resetBatchSize(): Action {
   };
 }
 
-function updateBatchSize(batchSize: number): Action {
-  return {
+function updateBatchSize(dispatch) {
+  dispatch({
     type: UPDATE_BATCH_SIZE,
-    batchSize,
+  });
+}
+
+function loadNextDoodles() {
+  return async (dispatch: Dispatch, getState: Function) => {
+    const offset = getState().infiniteScrollBatchSize;
+
+    await fetchDoodlesSlice(dispatch, offset, step);
+
+    updateBatchSize(dispatch);
   };
 }
 
-export { resetBatchSize, updateBatchSize };
+export { resetBatchSize, loadNextDoodles };
 
 export default reducer;

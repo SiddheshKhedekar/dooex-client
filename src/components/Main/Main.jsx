@@ -15,7 +15,7 @@ import savedFilter from 'filters/saved-filter';
 import searchFilter from 'filters/search-filter';
 import detectPassive from 'modules/detect-passive';
 import { loadDoodles } from 'reducers/doodles';
-import { updateBatchSize } from 'reducers/infinite-scroll';
+import { loadNextDoodles } from 'reducers/infinite-scroll';
 
 import styles from './Main.scss';
 
@@ -24,7 +24,7 @@ type Props = {
   loadDoodles: Function,
   location: Location,
   pathname: string,
-  updateBatchSize: Function,
+  loadNextDoodles: Function,
 };
 
 const isPassive = detectPassive();
@@ -50,25 +50,25 @@ class Main extends Component<Props> {
       scrollingElement.scrollTop / (scrollingElement.scrollHeight - window.innerHeight);
 
     if (scrolledRatio > 0.9) {
-      this.loadNext();
+      this.loadNextDoodles();
     }
   };
 
-  loadNext = () => {
-    if (this.shouldLoadNext === false) {
+  loadNextDoodles = () => {
+    if (this.shouldLoadNextDoodles === false) {
       return;
     }
 
-    // debounce scrolling
-    this.shouldLoadNext = false;
+    // throttle scrolling
+    this.shouldLoadNextDoodles = false;
     setTimeout(() => {
-      this.shouldLoadNext = true;
+      this.shouldLoadNextDoodles = true;
     }, 600);
 
-    this.props.updateBatchSize();
+    this.props.loadNextDoodles();
   };
 
-  shouldLoadNext = true;
+  shouldLoadNextDoodles = true;
 
   renderDoodles() {
     if (this.props.doodles.length === 0) {
@@ -134,7 +134,7 @@ function mapStateToProps(state, ownProps: Props) {
 
 const mapDispatchToProps = {
   loadDoodles,
-  updateBatchSize,
+  loadNextDoodles,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
