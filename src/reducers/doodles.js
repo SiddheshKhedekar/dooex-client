@@ -26,9 +26,12 @@ const FETCH_DOODLES = 'FETCH_DOODLES';
 const FETCH_DOODLES_SLICE = 'FETCH_DOODLES_SLICE';
 const UPDATE_DOODLE = 'UPDATE_DOODLE';
 
+let allDoodlesLoaded = false;
+
 function reducer(state: State = initialState, action: Action, metaState: MetaState) {
   switch (action.type) {
     case FETCH_DOODLES:
+      allDoodlesLoaded = true;
       return inflate(action.doodles, metaState);
 
     case FETCH_DOODLES_SLICE:
@@ -51,30 +54,23 @@ function reducer(state: State = initialState, action: Action, metaState: MetaSta
   }
 }
 
-async function fetchDoodles(dispatch, sliceSize = null) {
-  try {
-    let url;
-    switch (sliceSize) {
-      case null:
-        url = '/doodles/all';
-        break;
+async function fetchDoodles(dispatch) {
+  const url = '/doodles/all';
 
-      default:
-        url = `/doodles/slice/${sliceSize}`;
-    }
+  const doodles = await fetchJson(url);
 
-    const doodles = await fetchJson(url);
-
-    dispatch({
-      type: FETCH_DOODLES,
-      doodles,
-    });
-  } catch (err) {
-    console.error(err);
-  }
+  dispatch({
+    type: FETCH_DOODLES,
+    doodles,
+  });
 }
 
 async function fetchDoodlesSlice(dispatch: Dispatch, offset: number, sliceSize: number) {
+  // bail
+  if (allDoodlesLoaded) {
+    return;
+  }
+
   const url = `/doodles/slice/${offset}/${sliceSize}`;
 
   const doodles = await fetchJson(url);
@@ -89,10 +85,10 @@ function loadDoodles() {
   return async (dispatch: Dispatch) => {
     await fetchMeta(dispatch);
 
-    await fetchDoodles(dispatch, 1);
-    await fetchDoodles(dispatch, 5);
+    await fetchDoodlesSlice(dispatch, 0, 1);
+    await fetchDoodlesSlice(dispatch, 1, 5);
 
-    // fetchDoodles(dispatch);
+    fetchDoodles(dispatch);
   };
 }
 
