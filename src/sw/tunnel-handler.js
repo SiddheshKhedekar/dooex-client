@@ -1,7 +1,7 @@
 class TunnelHandler {
   constructor(sw) {
     this.cache = sw.strategies.cacheFirst({
-      cacheName: 'interactive',
+      cacheName: 'tunnel',
     });
   }
 
