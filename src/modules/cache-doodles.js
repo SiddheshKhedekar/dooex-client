@@ -2,9 +2,9 @@
 
 import type { Doodle } from 'modules/types';
 
-import { savedDoodlesCacheName as cacheName } from 'modules/names';
+import { savedDoodlesCacheName as CACHE_NAME } from 'modules/names';
 
-const linkTypes = ['url', 'hires_url', 'standalone_html'];
+const linkTypes = ['url', 'hires_url'];
 
 /**
  * Filter out null links in doodle.
@@ -17,7 +17,7 @@ function getValidLinks(doodle: Doodle) {
  * Add doodle assets to cache.
  */
 async function cacheDoodle(doodle: Doodle) {
-  const cache = await caches.open(cacheName);
+  const cache = await caches.open(CACHE_NAME);
 
   const cachePromises = getValidLinks(doodle).map(async (link) => {
     const resp = await fetch(link, { mode: 'no-cors' });
@@ -32,7 +32,7 @@ async function cacheDoodle(doodle: Doodle) {
  * Remove doodle assets from cache.
  */
 async function uncacheDoodle(doodle: Doodle) {
-  const cache = await caches.open(cacheName);
+  const cache = await caches.open(CACHE_NAME);
 
   const cachePromises = getValidLinks(doodle).map(async link => cache.delete(link));
 

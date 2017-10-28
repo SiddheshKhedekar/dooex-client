@@ -26,7 +26,7 @@ class SaveButton extends Component<Props> {
     const { doodle } = this.props;
 
     try {
-      if (doodle.doodle) {
+      if (doodle.isSaved) {
         await uncacheDoodle(doodle);
       } else {
         await cacheDoodle(doodle);
