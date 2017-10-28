@@ -13,6 +13,10 @@ const sw = new WorkboxSW({
   skipWaiting: true,
 });
 
+['/', '/favicon.ico'].forEach((url) => {
+  sw.router.registerRoute(url, sw.strategies.cacheFirst());
+});
+
 sw.router.registerRoute(
   /doodles/,
   sw.strategies.cacheFirst({
@@ -20,17 +24,12 @@ sw.router.registerRoute(
   }),
 );
 
-sw.router.registerRoute(/static/, sw.strategies.cacheFirst());
-sw.router.registerRoute(/bundle\.js/, sw.strategies.networkOnly());
+sw.router.registerRoute(/bundle\.js/, sw.strategies.networkOnly()); // bypass for dev
 
 sw.router.registerRoute(/logos/, new TunnelHandler(sw));
 sw.router.registerRoute(/doodles\/api/, new TunnelHandler(sw));
 
 sw.router.registerRoute(/saved/, new SavedHandler(sw));
-
-['/', '/favicon.ico'].forEach((url) => {
-  sw.router.registerRoute(url, sw.strategies.cacheFirst());
-});
 
 sw.precache(['/doodles/meta', '/doodles/all']);
 
