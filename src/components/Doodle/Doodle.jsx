@@ -43,6 +43,7 @@ class Doodle extends Component<Props> {
         </div>
 
         <OnlineLink
+          force={this.props.doodle.isSaved}
           to={`${this.props.basepath}/fullscreen/${doodle.id}`}
           className={styles.tileLink}
         >

@@ -16,6 +16,10 @@ function handleClick(e: MouseEvent) {
 }
 
 function OnlineLink(props: Props) {
+  if (props.force) {
+    return <Link {...props} />;
+  }
+
   return <Link {...props} onClick={handleClick} />;
 }
 
