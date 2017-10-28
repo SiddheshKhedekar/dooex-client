@@ -4,13 +4,13 @@
   background-color: white;
   box-shadow: 0 2px 4px #ddd;
   justify-content: space-between;
-  padding: 0.24rem 0.5rem 0.24rem 0.2rem;
+  padding: 0.22rem 0.5rem 0.28rem 0.2rem;
 }
 
 .back {
   composes: global(navbar-brand);
 
-  margin-right: 0.4rem;
+  margin-right: 0.2rem;
 }
 
 .reset {
