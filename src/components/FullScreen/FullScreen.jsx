@@ -7,6 +7,8 @@ import type { Doodle } from 'modules/types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import OfflineTile from 'components/OfflineTile';
+
 import styles from './FullScreen.css';
 
 type Props = {
@@ -35,6 +37,10 @@ class FullScreen extends Component<Props> {
   };
 
   renderDoodle() {
+    if (navigator.onLine === false && this.props.doodle.isSaved === false) {
+      return this.renderOfflineTile();
+    }
+
     switch (this.props.doodle.type) {
       case 'interactive':
         return this.renderIframe();
@@ -68,6 +74,10 @@ class FullScreen extends Component<Props> {
         alt={doodle.title}
       />
     );
+  }
+
+  renderOfflineTile() {
+    return <OfflineTile />;
   }
 
   render() {
