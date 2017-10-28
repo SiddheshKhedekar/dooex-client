@@ -28,6 +28,18 @@ function InfoTable({ doodle }: { doodle: Doodle }) {
   return (
     <table className={styles.root}>
       <tbody>
+        <tr>
+          <td className={styles.labelType}>Date</td>
+
+          <td>
+            {doodle.date
+              .toDateString()
+              .split(' ')
+              .slice(1)
+              .join(' ')}
+          </td>
+        </tr>
+
         <Row doodle={doodle} property="countries" />
 
         <Row doodle={doodle} property="tags" />

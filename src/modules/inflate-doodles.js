@@ -36,6 +36,8 @@ function inflateDoodles(deflatedDoodles: Array<DeflatedDoodle>, meta: MetaState)
     doodle.countries = doodle.countries.map(cIdx => countries[cIdx]);
     doodle.tags = doodle.tags.map(tIdx => tags[tIdx]);
 
+    doodle.date = new Date(doodle.date);
+
     doodle.isSaved = savedDoodleIds.includes(doodle.id);
 
     return doodle;
