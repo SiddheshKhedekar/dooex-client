@@ -17,6 +17,7 @@ type AlertType =
 class Alert {
   div: HTMLDivElement;
   message: string;
+  removeTimeoutId: number;
   type: string;
 
   static queue = [];
@@ -47,6 +48,11 @@ class Alert {
     const div = document.createElement('div');
     div.innerText = this.message;
     div.className = this.withType(styles.alert);
+    div.onclick = () => {
+      clearTimeout(this.removeTimeoutId);
+
+      this.remove();
+    };
 
     return div;
   }
@@ -67,23 +73,21 @@ class Alert {
 
     setTimeout(() => {
       div.className = withType(styles.show);
-    }, 100);
 
-    this.remove();
+      this.removeTimeoutId = setTimeout(this.remove, 2000);
+    }, 100);
   }
 
-  remove() {
+  remove = () => {
     const { div, withType } = this;
 
-    setTimeout(() => {
-      div.className = withType(styles.hide);
+    div.className = withType(styles.hide);
 
-      setTimeout(() => {
-        Alert.queue.pop();
-        div.remove();
-      }, 400);
-    }, 2000);
-  }
+    setTimeout(() => {
+      Alert.queue.pop();
+      div.remove();
+    }, 400);
+  };
 }
 
 export default classAsFunction(Alert);
