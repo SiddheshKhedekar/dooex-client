@@ -4,10 +4,14 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.2",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
+    "babel-plugin-css-modules-transform": "^1.2.7",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-react-app": "^3.0.3",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
@@ -60,10 +64,10 @@
   },
   "proxy": "http://localhost:8000/",
   "scripts": {
+    "build": "npm run lib && npm run sw && node scripts/build.js",
+    "lib": "node scripts/lib.js",
     "start": "node scripts/start.js",
-    "build": "npm run sw:build && node scripts/build.js",
-    "sw:build": "NODE_ENV=production webpack -p --config config/webpack.config.sw.js",
-    "sw:start": "NODE_ENV=development webpack -w -d --config config/webpack.config.sw.js",
+    "sw": "webpack -p --config config/webpack.config.sw.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
