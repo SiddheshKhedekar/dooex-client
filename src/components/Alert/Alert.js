@@ -1,5 +1,7 @@
 // @flow
 
+import classAsFunction from 'modules/class-as-function';
+
 import styles from './Alert.css';
 
 type AlertType =
@@ -15,6 +17,7 @@ type AlertType =
 class Alert {
   div: HTMLDivElement;
   message: string;
+  removeTimeoutId: number;
   type: string;
 
   static queue = [];
@@ -45,6 +48,11 @@ class Alert {
     const div = document.createElement('div');
     div.innerText = this.message;
     div.className = this.withType(styles.alert);
+    div.onclick = () => {
+      clearTimeout(this.removeTimeoutId);
+
+      this.remove();
+    };
 
     return div;
   }
@@ -65,37 +73,21 @@ class Alert {
 
     setTimeout(() => {
       div.className = withType(styles.show);
-    }, 100);
 
-    this.remove();
+      this.removeTimeoutId = setTimeout(this.remove, 2000);
+    }, 100);
   }
 
-  remove() {
+  remove = () => {
     const { div, withType } = this;
 
+    div.className = withType(styles.hide);
+
     setTimeout(() => {
-      div.className = withType(styles.hide);
-
-      setTimeout(() => {
-        Alert.queue.pop();
-        div.remove();
-      }, 400);
-    }, 2000);
-  }
-}
-
-/**
- * Allow calling class constructor without `new`
- * @param {class} C
- */
-function classAsFunction(C) {
-  const wrapped = (...args: Array<*>) => new C(...args);
-
-  Object.defineProperty(wrapped, 'name', {
-    value: C.name,
-  });
-
-  return wrapped;
+      Alert.queue.pop();
+      div.remove();
+    }, 400);
+  };
 }
 
 export default classAsFunction(Alert);
