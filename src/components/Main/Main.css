@@ -2,7 +2,7 @@
   composes: global(row) global(justify-content-center) global(pt-lg-3) global(pt-xl-4);
 }
 
-.foo {
+.content {
   width: 100%;
   max-width: 620px;
 }

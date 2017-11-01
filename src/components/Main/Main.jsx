@@ -17,7 +17,7 @@ import detectPassive from 'modules/detect-passive';
 import { loadDoodles } from 'reducers/doodles';
 import { loadNextDoodles } from 'reducers/infinite-scroll';
 
-import styles from './Main.scss';
+import styles from './Main.css';
 
 type Props = {
   doodles: Array<DoodleType>,
@@ -97,7 +97,7 @@ class Main extends Component<Props> {
     return (
       <div className="container-fluid">
         <div className={styles.row}>
-          <div className={styles.foo}>
+          <div className={styles.content}>
             <NoDoodles doodlesCount={this.props.doodles.length} />
             {this.renderDoodles()}
           </div>
