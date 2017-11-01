@@ -31,7 +31,8 @@ const isPassive = detectPassive();
 
 class Main extends Component<Props> {
   componentDidMount() {
-    if (this.props.doodles.length === 0) {
+    if (this.props.doodles.length <= 5) {
+      // window.__DOOEX_DOODLES__
       this.props.loadDoodles();
     }
 

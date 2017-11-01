@@ -85,8 +85,7 @@ function loadDoodles() {
   return async (dispatch: Dispatch) => {
     await fetchMeta(dispatch);
 
-    await fetchDoodlesSlice(dispatch, 0, 1);
-    await fetchDoodlesSlice(dispatch, 1, 5);
+    await fetchDoodlesSlice(dispatch, 5, 5);
 
     fetchDoodles(dispatch);
   };
