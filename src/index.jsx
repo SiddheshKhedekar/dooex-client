@@ -11,10 +11,13 @@ import { AppContainer } from 'react-hot-loader';
 import App from './App';
 
 import history from 'modules/history';
-import store from 'modules/store';
+import createStore from 'modules/store';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+
+const store = createStore(window.__DOOEX_STATE__);
+delete window.__DOOEX_STATE__;
 
 function render(Component) {
   ReactDOM.render(
