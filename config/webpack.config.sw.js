@@ -3,21 +3,19 @@ const path = require('path');
 
 const paths = require('./paths');
 
-const DEST_DIR = paths.appPublic;
-
 /**
  * Update `VERSION` veriable in service-worker script.
  * This allows loading fresh worker in browser.
  */
 const serviceWorkerVersionWriter = {
   apply(compiler) {
-    compiler.plugin('done', (stats) => {
-      const swFilePath = path.join(DEST_DIR, 'sw.js');
+    compiler.plugin('done', (_) => {
+      const timestamp = new Date().getTime();
 
-      fs.writeFileSync(
-        swFilePath,
-        fs.readFileSync(swFilePath, 'utf8').replace('{{VERSION}}', new Date().getTime()),
-      );
+      const swFilePath = path.join(paths.appPublic, 'sw.js');
+      const swContent = fs.readFileSync(swFilePath, 'utf8');
+
+      fs.writeFileSync(swFilePath, swContent.replace('{{VERSION}}', timestamp));
     });
   },
 };
@@ -29,7 +27,7 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    path: DEST_DIR,
+    path: paths.appPublic,
   },
 
   module: {

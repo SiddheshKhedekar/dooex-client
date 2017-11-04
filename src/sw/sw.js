@@ -5,7 +5,7 @@ import TunnelHandler from './tunnel-handler';
 
 importScripts('/workbox-sw.prod.v2.1.0.js');
 
-const VERSION = '{{VERSION}}';
+console.log('{{VERSION}}');
 
 const sw = new WorkboxSW({
   cacheId: 'dooex',
