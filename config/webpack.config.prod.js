@@ -284,7 +284,7 @@ module.exports = {
       globIgnores: [
         '**/*.map',
         'asset-manifest.json',
-        'manifest.json',
+        'index.html',
         'sw.js'
       ],
 

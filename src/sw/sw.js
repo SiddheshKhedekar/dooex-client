@@ -13,12 +13,9 @@ const sw = new WorkboxSW({
   skipWaiting: true,
 });
 
-sw.router.registerRoute(
-  /doodles/,
-  sw.strategies.cacheFirst({
-    cacheName: 'doodles',
-  }),
-);
+['/', '/doodles/all', '/doodles/meta'].forEach((url) => {
+  sw.router.registerRoute(url, sw.strategies.staleWhileRevalidate());
+});
 
 sw.router.registerRoute(/bundle\.js/, sw.strategies.networkOnly()); // bypass for dev
 
@@ -26,7 +23,5 @@ sw.router.registerRoute(/logos/, new TunnelHandler(sw));
 sw.router.registerRoute(/doodles\/api/, new TunnelHandler(sw));
 
 sw.router.registerRoute(/saved/, new SavedHandler(sw)); // after TunnelHandler
-
-sw.precache(['/doodles/meta', '/doodles/all']);
 
 sw.precache([]);
