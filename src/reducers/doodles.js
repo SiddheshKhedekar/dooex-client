@@ -26,7 +26,9 @@ const FETCH_DOODLES = 'FETCH_DOODLES';
 const FETCH_DOODLES_SLICE = 'FETCH_DOODLES_SLICE';
 const UPDATE_DOODLE = 'UPDATE_DOODLE';
 
-let allDoodlesLoaded = false;
+let allDoodlesLoaded = (async function checkAllDoodlesLoaded() {
+  return !!await caches.match('/doodles/all');
+}());
 
 function reducer(state: State = initialState, action: Action, metaState: MetaState) {
   switch (action.type) {
@@ -67,7 +69,7 @@ async function fetchDoodles(dispatch) {
 
 async function fetchDoodlesSlice(dispatch: Dispatch, offset: number, sliceSize: number) {
   // bail
-  if (allDoodlesLoaded) {
+  if (await allDoodlesLoaded) {
     return;
   }
 
