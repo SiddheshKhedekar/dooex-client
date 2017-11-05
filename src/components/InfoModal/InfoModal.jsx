@@ -35,7 +35,7 @@ function InfoModal(props: Props) {
             </button>
           </div>
 
-          <div className="modal-body">
+          <div className={styles.body}>
             <InfoTable doodle={doodle} />
           </div>
         </div>

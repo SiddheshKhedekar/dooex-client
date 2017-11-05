@@ -11,3 +11,8 @@
   font-size: 0.8em;
   padding-left: 6px;
 }
+
+.body {
+  composes: global(modal-body);
+  padding-top: 0;
+}
