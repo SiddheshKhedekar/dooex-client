@@ -1,11 +1,8 @@
 // @flow
 
-import type { Location, RouterHistory } from 'react-router';
-
 import type { Doodle } from 'modules/types';
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import OfflineTile from 'components/OfflineTile';
 
@@ -13,99 +10,59 @@ import styles from './FullScreen.css';
 
 type Props = {
   doodle: Doodle,
-  history: RouterHistory,
-  isModal: boolean,
-  location: Location,
+  close: Function,
 };
 
-class FullScreen extends Component<Props> {
-  static defaultProps = {
-    doodle: null,
-  };
+function renderIframe(doodle: Doodle) {
+  // Replace origin to convert remote URL into self-hosted URL
+  // so that service-worker can `fetch` it
 
-  close = () => {
-    if (this.props.isModal) {
-      this.props.history.goBack();
-      return;
-    }
+  const url = new URL(doodle.standalone_html);
+  const src = url.href.replace(url.origin, '');
 
-    this.props.history.push({
-      ...this.props.location,
-      pathname: this.props.location.pathname.replace(/fullscreen\/.*$/, ''),
-    });
-  };
+  return <iframe className={styles.iframe} src={src} title={doodle.title} />;
+}
 
-  renderDoodle() {
-    if (navigator.onLine === false && this.props.doodle.isSaved === false) {
-      return this.renderOfflineTile();
-    }
+function renderImage(doodle: Doodle) {
+  const windowAspect = window.screen.width / window.screen.height;
 
-    switch (this.props.doodle.type) {
-      case 'interactive':
-        return this.renderIframe();
+  return (
+    <img
+      className={windowAspect > doodle.aspect ? styles.landscape : styles.portrait}
+      src={doodle.isSaved ? `/saved?${doodle.hires_url}` : doodle.hires_url}
+      alt={doodle.title}
+    />
+  );
+}
 
-      default:
-        return this.renderImage();
-    }
-  }
-
-  renderIframe() {
-    const { doodle } = this.props;
-
-    // Replace origin to convert remote URL into self-hosted URL
-    // so that service-worker can `fetch` it
-
-    const url = new URL(doodle.standalone_html);
-    const src = url.href.replace(url.origin, '');
-
-    return <iframe className={styles.iframe} src={src} title={doodle.title} />;
-  }
-
-  renderImage() {
-    const { doodle } = this.props;
-
-    const windowAspect = window.screen.width / window.screen.height;
-
-    return (
-      <img
-        className={windowAspect > doodle.aspect ? styles.landscape : styles.portrait}
-        src={doodle.isSaved ? `/saved?${doodle.hires_url}` : doodle.hires_url}
-        alt={doodle.title}
-      />
-    );
-  }
-
-  renderOfflineTile() {
+function renderDoodle(doodle: Doodle) {
+  if (navigator.onLine === false && doodle.isSaved === false) {
     return <OfflineTile />;
   }
 
-  render() {
-    if (this.props.doodle === null) {
-      return null;
-    }
+  switch (doodle.type) {
+    case 'interactive':
+      return renderIframe(doodle);
 
-    return (
-      <div className={styles.root}>
-        {this.renderDoodle()}
-
-        <div className={styles.closeContainer}>
-          <button className={styles.close} onClick={this.close}>
-            <span>&times;</span>
-          </button>
-        </div>
-      </div>
-    );
+    default:
+      return renderImage(doodle);
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const { doodleId } = ownProps.match.params;
-  const isModal = !!(ownProps.location.state && ownProps.location.state.isModal);
+function FullScreen(props: Props) {
+  const { close, doodle } = props;
 
-  return {
-    doodle: state.doodles.find(doodle => doodle.id === doodleId),
-    isModal,
-  };
+  return (
+    <div className={styles.root}>
+      {renderDoodle(doodle)}
+
+      <div className={styles.closeContainer}>
+        <button className={styles.close} onClick={() => close('fullscreen')}>
+          <span>&times;</span>
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(FullScreen);
+export default FullScreen;

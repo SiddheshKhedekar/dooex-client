@@ -6,6 +6,7 @@ import Route from 'react-router/Route';
 import FullScreen from 'components/FullScreen';
 import InfoModal from 'components/InfoModal';
 import Main from 'components/Main';
+import Modal from 'components/Modal';
 import NavBar from 'components/NavBar';
 
 type Props = {
@@ -21,9 +22,23 @@ function MainPage(props: Props) {
 
   return (
     <div>
-      <Route path={`${basepath}info/:doodleId`} component={InfoModal} isModal={false} />
+      <Route
+        path={`${basepath}info/:doodleId`}
+        render={routeProps => (
+          <Modal {...routeProps}>
+            <InfoModal />
+          </Modal>
+        )}
+      />
 
-      <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} isModal />
+      <Route
+        path={`${basepath}fullscreen/:doodleId`}
+        render={routeProps => (
+          <Modal {...routeProps}>
+            <FullScreen />
+          </Modal>
+        )}
+      />
 
       <Main />
     </div>

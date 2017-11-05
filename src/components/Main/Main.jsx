@@ -100,6 +100,7 @@ class Main extends Component<Props> {
         <div className={styles.row}>
           <div className={styles.content}>
             <NoDoodles doodlesCount={this.props.doodles.length} />
+
             {this.renderDoodles()}
           </div>
         </div>

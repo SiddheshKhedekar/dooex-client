@@ -21,14 +21,6 @@ type Props = {
 };
 
 class Doodle extends Component<Props> {
-  shouldComponentUpdate(nextProps: Props) {
-    if (nextProps.doodle === this.props.doodle) {
-      return false;
-    }
-
-    return true;
-  }
-
   modalPathname(modalType) {
     return {
       ...this.props.location,
