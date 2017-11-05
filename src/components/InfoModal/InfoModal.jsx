@@ -22,7 +22,6 @@ type Props = {
 class InfoModal extends Component<Props> {
   static defaultProps = {
     Doodle: null,
-    isModal: true,
   };
 
   close = () => {
@@ -74,9 +73,11 @@ class InfoModal extends Component<Props> {
 
 function mapStateToProps(state, ownProps) {
   const { doodleId } = ownProps.match.params;
+  const isModal = !!(ownProps.location.state && ownProps.location.state.isModal);
 
   return {
     doodle: state.doodles.find(doodle => doodle.id === doodleId),
+    isModal,
   };
 }
 

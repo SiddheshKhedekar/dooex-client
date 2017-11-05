@@ -1,9 +1,12 @@
 // @flow
 
+import type { Location } from 'react-router';
+
 import type { Doodle as DoodleType } from 'modules/types';
 
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
+import withRouter from 'react-router/withRouter';
 
 import OnlineLink from 'components/OnlineLink';
 import SaveButton from 'components/SaveButton';
@@ -14,6 +17,7 @@ import styles from './Doodle.css';
 type Props = {
   basepath: string,
   doodle: DoodleType,
+  location: Location,
 };
 
 class Doodle extends Component<Props> {
@@ -25,6 +29,15 @@ class Doodle extends Component<Props> {
     return true;
   }
 
+  modalPathname(modalType) {
+    return {
+      ...this.props.location,
+
+      pathname: `${this.props.basepath}/${modalType}/${this.props.doodle.id}`,
+      state: { isModal: true },
+    };
+  }
+
   render() {
     const { doodle } = this.props;
 
@@ -32,7 +45,7 @@ class Doodle extends Component<Props> {
       <div className={styles.root}>
         <div className={styles.header}>
           <div className={styles.actions}>
-            <Link className="btn" to={`${this.props.basepath}/info/${doodle.id}`}>
+            <Link className="btn" to={this.modalPathname('info')}>
               <span className="fa fa-fw fa-info" />
             </Link>
 
@@ -44,7 +57,7 @@ class Doodle extends Component<Props> {
 
         <OnlineLink
           force={this.props.doodle.isSaved}
-          to={`${this.props.basepath}/fullscreen/${doodle.id}`}
+          to={this.modalPathname('fullscreen')}
           className={styles.tileLink}
         >
           <Tile src={doodle.url} title={doodle.title} />
@@ -54,4 +67,4 @@ class Doodle extends Component<Props> {
   }
 }
 
-export default Doodle;
+export default withRouter(Doodle);

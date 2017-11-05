@@ -21,9 +21,9 @@ function MainPage(props: Props) {
 
   return (
     <div>
-      <Route path={`${basepath}info/:doodleId`} component={InfoModal} />
+      <Route path={`${basepath}info/:doodleId`} component={InfoModal} isModal={false} />
 
-      <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} />
+      <Route path={`${basepath}fullscreen/:doodleId`} component={FullScreen} isModal />
 
       <Main />
     </div>

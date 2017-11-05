@@ -21,7 +21,6 @@ type Props = {
 class FullScreen extends Component<Props> {
   static defaultProps = {
     doodle: null,
-    isModal: true,
   };
 
   close = () => {
@@ -101,9 +100,11 @@ class FullScreen extends Component<Props> {
 
 function mapStateToProps(state, ownProps) {
   const { doodleId } = ownProps.match.params;
+  const isModal = !!(ownProps.location.state && ownProps.location.state.isModal);
 
   return {
     doodle: state.doodles.find(doodle => doodle.id === doodleId),
+    isModal,
   };
 }
 
