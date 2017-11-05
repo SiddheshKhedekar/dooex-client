@@ -1,8 +1,6 @@
 let installPropmt = null;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-  console.log('beforeinstallprompt Event fired');
-
   e.preventDefault();
 
   installPropmt = e;
