@@ -15,10 +15,18 @@ type Props = {
 };
 
 function InfoModal(props: Props) {
-  const { close, doodle } = props;
+  const { doodle } = props;
+
+  const close = () => props.close('info');
+
+  const bgClose = (e) => {
+    if (e.target === e.currentTarget) {
+      close('info');
+    }
+  };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} onClick={bgClose}>
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -30,7 +38,7 @@ function InfoModal(props: Props) {
               </OnlineLink>
             </h5>
 
-            <button className="close" onClick={() => close('info')}>
+            <button className="close" onClick={close}>
               <span>&times;</span>
             </button>
           </div>
