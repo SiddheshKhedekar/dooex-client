@@ -11,8 +11,8 @@ import styles from './NavBar.css';
 function shareApp() {
   navigator.share({
     title: 'DooEx',
-    text: 'DooEx\nGoogle Doodles Explorer\n\n',
-    url: 'https://10.42.0.1:3000/',
+    text: 'DooEx\nExplore Google Doodles\n\n',
+    url: 'https://dooex.herokuapp.com/',
   });
 }
 
