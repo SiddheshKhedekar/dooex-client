@@ -45,8 +45,14 @@ function shareApp() {
 }
 
 function InstallButton() {
-  if (isMobileBrowser === false || window.BeforeInstallPromptEvent === undefined) {
-    return null;
+  const isApp = new URL(window.location.href).searchParams.has('app');
+  switch (true) {
+    case isMobileBrowser === false:
+    case window.BeforeInstallPromptEvent === undefined:
+    case isApp:
+      return null;
+
+    default:
   }
 
   return (
