@@ -311,11 +311,17 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'static/js/vendor.js',
-      minChunks(module) {
-        const context = module.context;
+      minChunks: (module) => true,
+    }),
 
-        return context && context.includes('node_modules');
-      },
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'src',
+      minChunks: (module) => /src/.test(module.context),
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'Main',
+      minChunks: (module) => /src\/components\/Main/.test(module.context),
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
