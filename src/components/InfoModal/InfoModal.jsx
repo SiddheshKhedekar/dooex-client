@@ -4,7 +4,7 @@ import type { Doodle } from 'modules/types';
 
 import React from 'react';
 
-import InfoTable from 'components/InfoTable';
+import InfoTable from './InfoTable';
 import OnlineLink from 'components/OnlineLink';
 
 import styles from './InfoModal.css';

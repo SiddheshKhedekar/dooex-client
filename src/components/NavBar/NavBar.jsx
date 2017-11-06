@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'react-router-dom/Link';
 import NavLink from 'react-router-dom/NavLink';
 
-import AppInstall from 'components/AppInstall';
+import AppInstall from './AppInstall';
 
 import detectMobileBrowser from 'modules/detect-mobile-browser';
 import { getInstallPrompt, resetInstallPrompt } from 'modules/app-install';

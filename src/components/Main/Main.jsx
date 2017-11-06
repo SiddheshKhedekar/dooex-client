@@ -8,8 +8,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withRouter from 'react-router/withRouter';
 
-import Doodle from 'components/Doodle';
-import NoDoodles from 'components/NoDoodles';
+import Doodle from './Doodle';
+import NoDoodles from './NoDoodles';
 
 import savedFilter from 'filters/saved-filter';
 import searchFilter from 'filters/search-filter';

@@ -4,7 +4,7 @@ import type { Doodle } from 'modules/types';
 
 import React, { Component } from 'react';
 
-import OfflineTile from 'components/OfflineTile';
+import OfflineTile from './OfflineTile';
 
 import styles from './FullScreen.css';
 

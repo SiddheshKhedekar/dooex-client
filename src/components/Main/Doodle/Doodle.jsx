@@ -9,8 +9,8 @@ import Link from 'react-router-dom/Link';
 import withRouter from 'react-router/withRouter';
 
 import OnlineLink from 'components/OnlineLink';
-import SaveButton from 'components/SaveButton';
-import Tile from 'components/Tile';
+import SaveButton from './SaveButton';
+import Tile from './Tile';
 
 import styles from './Doodle.css';
 
