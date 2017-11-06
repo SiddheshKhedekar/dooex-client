@@ -2,9 +2,9 @@
 
 import classAsFunction from 'modules/class-as-function';
 
-import styles from './AppInstall.css';
+import styles from './AppInstallScreen.css';
 
-class AppInstall {
+class AppInstallScreen {
   component: HTMLDivElement;
 
   constructor() {
@@ -49,4 +49,4 @@ class AppInstall {
   }
 }
 
-export default classAsFunction(AppInstall);
+export default classAsFunction(AppInstallScreen);

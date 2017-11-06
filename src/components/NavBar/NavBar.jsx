@@ -4,37 +4,9 @@ import React from 'react';
 import Link from 'react-router-dom/Link';
 import NavLink from 'react-router-dom/NavLink';
 
-import AppInstall from './AppInstall';
-
-import detectMobileBrowser from 'modules/detect-mobile-browser';
-import { getInstallPrompt, resetInstallPrompt } from 'modules/app-install';
+import AppInstallButton from './AppInstallButton';
 
 import styles from './NavBar.css';
-
-const isMobileBrowser = detectMobileBrowser();
-
-function promptAppInstall() {
-  const installPrompt = getInstallPrompt();
-
-  if (installPrompt === null) {
-    AppInstall();
-    return;
-  }
-
-  installPrompt.prompt();
-
-  installPrompt.userChoice.then((choiceResult) => {
-    console.log(choiceResult.outcome);
-
-    if (choiceResult.outcome === 'dismissed') {
-      console.log('User cancelled home screen install');
-    } else {
-      console.log('User added to home screen');
-    }
-
-    resetInstallPrompt();
-  });
-}
 
 function shareApp() {
   navigator.share({
@@ -42,24 +14,6 @@ function shareApp() {
     text: 'DooEx\nGoogle Doodles Explorer\n\n',
     url: 'https://10.42.0.1:3000/',
   });
-}
-
-function InstallButton() {
-  const isApp = new URL(window.location.href).searchParams.has('app');
-  switch (true) {
-    case isMobileBrowser === false:
-    case window.BeforeInstallPromptEvent === undefined:
-    case isApp:
-      return null;
-
-    default:
-  }
-
-  return (
-    <button className={styles.action} onClick={promptAppInstall}>
-      <span className="fa fa-fw fa-download" />
-    </button>
-  );
 }
 
 function ShareButton() {
@@ -95,7 +49,7 @@ function NavBar() {
         </li>
 
         <li className="nav-item">
-          <InstallButton />
+          <AppInstallButton />
         </li>
 
         <li className="nav-item">
