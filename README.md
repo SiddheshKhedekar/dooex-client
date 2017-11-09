@@ -9,9 +9,11 @@ This is the current (fourth) iteration of the project that is part of a private 
 
 The app is hosted on [dooex.herokuapp.com](https://dooex.herokuapp.com/).
 
-### [Archived]
+#### Archive
 
-The archived iterations are in a separate repository: [dood](https://github.com/zhirzh/dood). You can see the demos for each copy below.
+The archived versions are in a separate repository: [dood](https://github.com/zhirzh/dood).
+
+You can see the demos for each copy below.
 
 V1: https://cdn.rawgit.com/zhirzh/dood/v1/dist/
 
