@@ -1,5 +1,5 @@
 # DooEx
-Explore Google doodles with a *bleeding edge* and ever-evolving React PWA on [dooex.herokuapp.com](https://dooex.herokuapp.com/
+Explore Google doodles with a *bleeding edge* and ever-evolving React PWA on [dooex.herokuapp.com](https://dooex.herokuapp.com/)
 
 This is the current (fourth) iteration of the project that is part of a private git module cluster. The residents of the cluster are public.
 
